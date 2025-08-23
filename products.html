@@ -101,35 +101,43 @@ let products = [];
 let currentPage = 1;
 const productsPerPage = 6;
 
+// Fetch products from Google Sheet
 function fetchProducts() {
   fetch(sheetAPI)
     .then(res => res.json())
     .then(data => {
       products = data;
       renderProducts(currentPage, "*");
-    });
+    })
+    .catch(err => console.error("Error fetching products:", err));
 }
 
+// Render products with pagination and filter
 function renderProducts(page, filter) {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
   
-  let filtered = products.filter(p => filter === "*" || p.category === filter.substring(1));
+  let filtered = products.filter(p => {
+    const category = p.category ? p.category.trim() : "";
+    return filter === "*" || category === filter.substring(1);
+  });
+
   const start = (page - 1) * productsPerPage;
   const end = start + productsPerPage;
   const pageProducts = filtered.slice(start, end);
   
   pageProducts.forEach(p => {
+    const imgUrl = p.images.trim(); // Trim extra spaces
     const div = document.createElement("div");
-    div.className = "col-lg-4 col-md-4 all " + p.category;
+    div.className = "col-lg-4 col-md-4 all " + (p.category ? p.category.trim() : "");
     div.innerHTML = `
       <div class="product-item">
-        <img src="${p.image}" alt="${p.name}">
+        <img src="${imgUrl}" alt="${p.name}">
         <div class="down-content">
           <h4>${p.name}</h4>
           <h6>₹${p.price}</h6>
           <p>${p.description}</p>
-          <a href="${p.link}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
+          <a href="https://wa.me/918787530294?text=I%20want%20to%20buy%20${encodeURIComponent(p.name)}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
         </div>
       </div>
     `;
@@ -137,6 +145,7 @@ function renderProducts(page, filter) {
   });
 }
 
+// Get current active filter
 function getActiveFilter() {
   return document.querySelector(".filters li.active").getAttribute("data-filter");
 }
@@ -151,7 +160,7 @@ document.querySelectorAll(".filters li").forEach(li => {
   });
 });
 
-// Arrow pagination
+// Pagination arrows
 document.getElementById("prev-page").addEventListener("click", e => {
   e.preventDefault();
   if (currentPage > 1) {
@@ -161,13 +170,14 @@ document.getElementById("prev-page").addEventListener("click", e => {
 });
 document.getElementById("next-page").addEventListener("click", e => {
   e.preventDefault();
-  const totalPages = Math.ceil(products.filter(p => getActiveFilter() === "*" || p.category === getActiveFilter().substring(1)).length / productsPerPage);
+  const totalPages = Math.ceil(products.filter(p => getActiveFilter() === "*" || (p.category ? p.category.trim() : "") === getActiveFilter().substring(1)).length / productsPerPage);
   if (currentPage < totalPages) {
     currentPage++;
     renderProducts(currentPage, getActiveFilter());
   }
 });
 
+// Initialize
 fetchProducts();
 </script>
 
