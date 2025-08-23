@@ -9,15 +9,35 @@
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
   <style>
-    .pages li {
-      display: inline-block;
-      margin: 0 5px;
+    /* Fix pagination so it doesn’t overlap */
+    .pages {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 30px;
+      margin-bottom: 50px; /* space below */
+      padding: 0;
     }
+
+    .pages li {
+      list-style: none;
+    }
+
+    .pages li a {
+      display: inline-block;
+      padding: 8px 14px;
+      background: #f4f4f4;
+      color: #333;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .pages li a:hover,
     .pages li a.active {
-      background-color: #28a745;
+      background: #ff6600;
       color: #fff;
-      padding: 5px 10px;
-      border-radius: 4px;
     }
   </style>
 </head>
@@ -77,7 +97,7 @@
       </div>
       <div class="col-md-12 text-center">
         <ul class="pages" id="pagination">
-          <!-- Page numbers will appear here -->
+          <!-- Page numbers will be generated here -->
         </ul>
       </div>
     </div>
@@ -118,20 +138,44 @@ function fetchProducts() {
     .then(data => {
       products = data;
       renderProducts(currentPage, "*");
-      renderPagination();
     });
+}
+
+function renderPagination(totalPages) {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = "#";
+    a.textContent = i;
+    if (i === currentPage) a.classList.add("active");
+
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      currentPage = i;
+      renderProducts(currentPage, getActiveFilter());
+    });
+
+    li.appendChild(a);
+    pagination.appendChild(li);
+  }
 }
 
 function renderProducts(page, filter) {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
-  
-  let filtered = products.filter(p => filter === "*" || p.category === filter.substring(1));
+
+  let filtered = products.filter(
+    (p) => filter === "*" || (p.category && p.category === filter.substring(1))
+  );
+
   const start = (page - 1) * productsPerPage;
   const end = start + productsPerPage;
   const pageProducts = filtered.slice(start, end);
-  
-  pageProducts.forEach(p => {
+
+  pageProducts.forEach((p) => {
     const div = document.createElement("div");
     div.className = "col-lg-4 col-md-4 all " + (p.category || "");
     div.innerHTML = `
@@ -147,6 +191,9 @@ function renderProducts(page, filter) {
     `;
     list.appendChild(div);
   });
+
+  const totalPages = Math.ceil(filtered.length / productsPerPage);
+  renderPagination(totalPages);
 }
 
 function getActiveFilter() {
@@ -160,30 +207,8 @@ document.querySelectorAll(".filters li").forEach(li => {
     li.classList.add("active");
     currentPage = 1;
     renderProducts(currentPage, getActiveFilter());
-    renderPagination();
   });
 });
-
-// Page numbers
-function renderPagination() {
-  const pagination = document.getElementById("pagination");
-  pagination.innerHTML = "";
-  
-  const filtered = products.filter(p => getActiveFilter() === "*" || p.category === getActiveFilter().substring(1));
-  const totalPages = Math.ceil(filtered.length / productsPerPage);
-  
-  for (let i = 1; i <= totalPages; i++) {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="#" class="${i === currentPage ? 'active' : ''}">${i}</a>`;
-    li.addEventListener("click", e => {
-      e.preventDefault();
-      currentPage = i;
-      renderProducts(currentPage, getActiveFilter());
-      renderPagination();
-    });
-    pagination.appendChild(li);
-  }
-}
 
 fetchProducts();
 </script>
