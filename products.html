@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
+  <style>
+    .pages li {
+      display: inline-block;
+      margin: 0 5px;
+    }
+    .pages li a.active {
+      background-color: #28a745;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
 
@@ -64,9 +76,8 @@
         </div>
       </div>
       <div class="col-md-12 text-center">
-        <ul class="pages">
-          <li><a href="#" id="prev-page"><i class="fa fa-angle-left"></i> Prev</a></li>
-          <li><a href="#" id="next-page">Next <i class="fa fa-angle-right"></i></a></li>
+        <ul class="pages" id="pagination">
+          <!-- Page numbers will appear here -->
         </ul>
       </div>
     </div>
@@ -101,43 +112,36 @@ let products = [];
 let currentPage = 1;
 const productsPerPage = 6;
 
-// Fetch products from Google Sheet
 function fetchProducts() {
   fetch(sheetAPI)
     .then(res => res.json())
     .then(data => {
       products = data;
       renderProducts(currentPage, "*");
-    })
-    .catch(err => console.error("Error fetching products:", err));
+      renderPagination();
+    });
 }
 
-// Render products with pagination and filter
 function renderProducts(page, filter) {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
   
-  let filtered = products.filter(p => {
-    const category = p.category ? p.category.trim() : "";
-    return filter === "*" || category === filter.substring(1);
-  });
-
+  let filtered = products.filter(p => filter === "*" || p.category === filter.substring(1));
   const start = (page - 1) * productsPerPage;
   const end = start + productsPerPage;
   const pageProducts = filtered.slice(start, end);
   
   pageProducts.forEach(p => {
-    const imgUrl = p.images.trim(); // Trim extra spaces
     const div = document.createElement("div");
-    div.className = "col-lg-4 col-md-4 all " + (p.category ? p.category.trim() : "");
+    div.className = "col-lg-4 col-md-4 all " + (p.category || "");
     div.innerHTML = `
       <div class="product-item">
-        <img src="${imgUrl}" alt="${p.name}">
+        <img src="${p.images}" alt="${p.name}">
         <div class="down-content">
           <h4>${p.name}</h4>
           <h6>₹${p.price}</h6>
           <p>${p.description}</p>
-          <a href="https://wa.me/918787530294?text=I%20want%20to%20buy%20${encodeURIComponent(p.name)}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
+          <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
         </div>
       </div>
     `;
@@ -145,7 +149,6 @@ function renderProducts(page, filter) {
   });
 }
 
-// Get current active filter
 function getActiveFilter() {
   return document.querySelector(".filters li.active").getAttribute("data-filter");
 }
@@ -157,27 +160,31 @@ document.querySelectorAll(".filters li").forEach(li => {
     li.classList.add("active");
     currentPage = 1;
     renderProducts(currentPage, getActiveFilter());
+    renderPagination();
   });
 });
 
-// Pagination arrows
-document.getElementById("prev-page").addEventListener("click", e => {
-  e.preventDefault();
-  if (currentPage > 1) {
-    currentPage--;
-    renderProducts(currentPage, getActiveFilter());
+// Page numbers
+function renderPagination() {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+  
+  const filtered = products.filter(p => getActiveFilter() === "*" || p.category === getActiveFilter().substring(1));
+  const totalPages = Math.ceil(filtered.length / productsPerPage);
+  
+  for (let i = 1; i <= totalPages; i++) {
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="#" class="${i === currentPage ? 'active' : ''}">${i}</a>`;
+    li.addEventListener("click", e => {
+      e.preventDefault();
+      currentPage = i;
+      renderProducts(currentPage, getActiveFilter());
+      renderPagination();
+    });
+    pagination.appendChild(li);
   }
-});
-document.getElementById("next-page").addEventListener("click", e => {
-  e.preventDefault();
-  const totalPages = Math.ceil(products.filter(p => getActiveFilter() === "*" || (p.category ? p.category.trim() : "") === getActiveFilter().substring(1)).length / productsPerPage);
-  if (currentPage < totalPages) {
-    currentPage++;
-    renderProducts(currentPage, getActiveFilter());
-  }
-});
+}
 
-// Initialize
 fetchProducts();
 </script>
 
