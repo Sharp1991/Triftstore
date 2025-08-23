@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-  <title>Thrift Sixteen Products</title>
+  <title>Thrift Sixteen</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item active"><a class="nav-link" href="products.html">Our Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
             <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
           </ul>
@@ -52,14 +52,49 @@
     </nav>
   </header>
 
-  <!-- Page Heading -->
-  <div class="page-heading products-heading header-text">
+  <!-- Banner / Slides -->
+  <div class="banner header-text">
+    <div class="owl-banner owl-carousel">
+      <div class="banner-item-01">
+        <div class="text-content">
+          <h4>Best Offer</h4>
+          <h2>New Arrivals On Sale</h2>
+        </div>
+      </div>
+      <div class="banner-item-02">
+        <div class="text-content">
+          <h4>Flash Deals</h4>
+          <h2>Grab Your Best Products</h2>
+        </div>
+      </div>
+      <div class="banner-item-03">
+        <div class="text-content">
+          <h4>Last Minute</h4>
+          <h2>Don't Miss Out</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="best-features">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="text-content">
-            <h4>New Arrivals</h4>
-            <h2>Thrift Sixteen Products</h2>
+          <div class="section-heading">
+            <h2>About Thrift Sixteen</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="left-content">
+            <h4>Quality Products from Northeast India</h4>
+            <p>Thrift Sixteen is a hygienic, reliable, and customer-focused clothing brand from Meghalaya, bringing you stylish and durable fashion. Our range includes shirts, jackets, dresses, and more — perfect for every occasion.</p>
+            <a href="about.html" class="filled-button">Read More</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="right-image">
+            <img src="assets/images/feature-image.jpg" alt="About Thrift Sixteen">
           </div>
         </div>
       </div>
@@ -67,11 +102,19 @@
   </div>
 
   <!-- Products Section -->
-  <div class="products">
+  <div class="latest-products">
     <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Our Products</h2>
+            <a href="products.html">View All Products <i class="fa fa-angle-right"></i></a>
+          </div>
+        </div>
+      </div>
       <div class="row" id="product-container">
-        <!-- Static products: shown if Google Sheet not connected -->
-        <div class="col-lg-4 col-md-4 all des product-item">
+        <!-- Static products -->
+        <div class="col-md-4 product-item">
           <img src="assets/images/product_01.jpg" alt="Classic Cotton Shirt">
           <div class="down-content">
             <h4>Classic Cotton Shirt</h4>
@@ -79,7 +122,7 @@
             <p>High-quality cotton shirt, perfect for casual wear.</p>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 all dev product-item">
+        <div class="col-md-4 product-item">
           <img src="assets/images/product_02.jpg" alt="Stylish Denim Jacket">
           <div class="down-content">
             <h4>Stylish Denim Jacket</h4>
@@ -87,7 +130,7 @@
             <p>Durable denim jacket, ideal for layering in cooler weather.</p>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 all gra product-item">
+        <div class="col-md-4 product-item">
           <img src="assets/images/product_03.jpg" alt="Casual Summer Dress">
           <div class="down-content">
             <h4>Casual Summer Dress</h4>
@@ -124,28 +167,23 @@
 
   <!-- Google Sheet Integration Script (optional) -->
   <script>
-    // Replace 'YOUR_GOOGLE_SHEET_JSON_URL' with the published JSON link of your sheet
     const sheetUrl = "YOUR_GOOGLE_SHEET_JSON_URL";
-
     fetch(sheetUrl)
       .then(res => res.json())
       .then(data => {
-        const products = data.products; // Assuming your sheet JSON has a "products" array
+        const products = data.products;
         const container = document.getElementById('product-container');
-        container.innerHTML = ""; // Clear static products
-
+        container.innerHTML = ""; // clear static
         products.forEach(p => {
           const col = document.createElement('div');
-          col.className = `col-lg-4 col-md-4 all ${p.category} product-item`;
-
+          col.className = "col-md-4 product-item";
           col.innerHTML = `
             <img src="${p.image}" alt="${p.name}">
             <div class="down-content">
               <h4>${p.name}</h4>
               <h6>₹${p.price}</h6>
               <p>${p.description}</p>
-            </div>
-          `;
+            </div>`;
           container.appendChild(col);
         });
       })
