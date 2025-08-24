@@ -9,19 +9,45 @@
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
   <style>
-    /* Fix pagination so it doesn’t overlap */
+    /* Product Frame Fix */
+    .product-item {
+      height: 400px; /* uniform frame height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #eee;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .product-item img {
+      max-height: 220px; /* image height inside frame */
+      width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .down-content h4, .down-content h6, .down-content p {
+      margin: 5px 0;
+    }
+
+    /* Pagination Styling */
     .pages {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 30px;
+      margin-top: 20px;
       margin-bottom: 50px;
       padding: 0;
     }
+
     .pages li {
       list-style: none;
     }
+
     .pages li a {
       display: inline-block;
       padding: 8px 14px;
@@ -31,43 +57,22 @@
       text-decoration: none;
       transition: background 0.3s;
     }
+
     .pages li a:hover,
     .pages li a.active {
       background: #ff6600;
       color: #fff;
     }
 
-    /* Product slider */
-    .product-slider {
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    .product-slider img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-    .slider-indicators {
+    /* Slider navigation arrows spacing */
+    .owl-carousel .owl-nav button {
       position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 5px;
-    }
-    .slider-indicators span {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    .slider-indicators span.active {
-      background: #ff6600;
+      top: 40%;
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
     }
   </style>
 </head>
@@ -127,7 +132,7 @@
       </div>
       <div class="col-md-12 text-center">
         <ul class="pages" id="pagination">
-          <!-- Page numbers will be generated here -->
+          <!-- Page numbers generated here -->
         </ul>
       </div>
     </div>
@@ -139,7 +144,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="inner-content">
-          <p>Copyright &copy; 2020 Thrift Sixteen Co., Ltd. - Design</a>
+          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd. - Design: 
+            <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a>
           </p>
         </div>
       </div>
@@ -159,7 +165,7 @@
 const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
 let products = [];
 let currentPage = 1;
-const productsPerPage = 6;
+const productsPerPage = 12;
 
 function fetchProducts() {
   fetch(sheetAPI)
@@ -207,20 +213,11 @@ function renderProducts(page, filter) {
   pageProducts.forEach((p) => {
     const div = document.createElement("div");
     div.className = "col-lg-4 col-md-4 all " + (p.category || "");
-    
-    const images = p.images.split(',').map(img => img.trim());
-    const sliderHTML = `
-      <div class="product-slider" data-images="${p.images}">
-        <img src="${images[0]}" alt="${p.name}">
-        <div class="slider-indicators">
-          ${images.map((_, i) => `<span class="${i === 0 ? 'active' : ''}"></span>`).join('')}
-        </div>
-      </div>
-    `;
-
     div.innerHTML = `
       <div class="product-item">
-        ${sliderHTML}
+        <div class="owl-carousel owl-theme">
+          <div><img src="${p.images}" alt="${p.name}"></div>
+        </div>
         <div class="down-content">
           <h4>${p.name}</h4>
           <h6>₹${p.price}</h6>
@@ -230,28 +227,19 @@ function renderProducts(page, filter) {
       </div>
     `;
     list.appendChild(div);
+
+    // Initialize Owl Carousel for each product individually
+    $(div).find('.owl-carousel').owlCarousel({
+      items: 1,
+      loop: true,
+      nav: true,
+      dots: true,
+      margin: 10
+    });
   });
 
   const totalPages = Math.ceil(filtered.length / productsPerPage);
   renderPagination(totalPages);
-
-  initProductSliders(); // Initialize slider for all products
-}
-
-function initProductSliders() {
-  document.querySelectorAll('.product-slider').forEach(slider => {
-    const images = slider.dataset.images.split(',').map(img => img.trim());
-    const imgTag = slider.querySelector('img');
-    const indicators = slider.querySelectorAll('.slider-indicators span');
-
-    indicators.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        imgTag.src = images[index];
-        indicators.forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-      });
-    });
-  });
 }
 
 function getActiveFilter() {
