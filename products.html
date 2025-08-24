@@ -9,28 +9,7 @@
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
   <style>
-    /* Bigger product cards */
-    .product-item {
-        padding: 20px;
-        border: 1px solid #eee;
-        border-radius: 10px;
-        margin-bottom: 30px;
-        background: #fff;
-    }
-
-    /* Carousel images inside product card */
-    .product-carousel img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .down-content {
-        padding: 15px 0;
-    }
-
-    /* Pagination */
+    /* Fix pagination so it doesn’t overlap */
     .pages {
       display: flex;
       justify-content: center;
@@ -40,8 +19,9 @@
       margin-bottom: 50px;
       padding: 0;
     }
-
-    .pages li { list-style: none; }
+    .pages li {
+      list-style: none;
+    }
     .pages li a {
       display: inline-block;
       padding: 8px 14px;
@@ -51,11 +31,43 @@
       text-decoration: none;
       transition: background 0.3s;
     }
-
     .pages li a:hover,
     .pages li a.active {
       background: #ff6600;
       color: #fff;
+    }
+
+    /* Product slider */
+    .product-slider {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .product-slider img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .slider-indicators {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+    }
+    .slider-indicators span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .slider-indicators span.active {
+      background: #ff6600;
     }
   </style>
 </head>
@@ -106,18 +118,16 @@
           </ul>
         </div>
       </div>
-
       <div class="col-md-12">
         <div class="filters-content">
           <div class="row grid" id="product-list">
-            <!-- Products will load here dynamically -->
+            <!-- Products will load here dynamically from Google Sheet -->
           </div>
         </div>
       </div>
-
       <div class="col-md-12 text-center">
         <ul class="pages" id="pagination">
-          <!-- Page numbers generated here -->
+          <!-- Page numbers will be generated here -->
         </ul>
       </div>
     </div>
@@ -129,8 +139,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="inner-content">
-          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd. - Design: 
-            <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a>
+          <p>Copyright &copy; 2020 Thrift Sixteen Co., Ltd. - Design</a>
           </p>
         </div>
       </div>
@@ -140,7 +149,12 @@
 
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
 <script src="assets/js/owl.js"></script>
+<script src="assets/js/slick.js"></script>
+<script src="assets/js/isotope.js"></script>
+<script src="assets/js/accordions.js"></script>
+
 <script>
 const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
 let products = [];
@@ -159,17 +173,20 @@ function fetchProducts() {
 function renderPagination(totalPages) {
   const pagination = document.getElementById("pagination");
   pagination.innerHTML = "";
+
   for (let i = 1; i <= totalPages; i++) {
     const li = document.createElement("li");
     const a = document.createElement("a");
     a.href = "#";
     a.textContent = i;
     if (i === currentPage) a.classList.add("active");
-    a.addEventListener("click", e => {
+
+    a.addEventListener("click", (e) => {
       e.preventDefault();
       currentPage = i;
       renderProducts(currentPage, getActiveFilter());
     });
+
     li.appendChild(a);
     pagination.appendChild(li);
   }
@@ -178,20 +195,32 @@ function renderPagination(totalPages) {
 function renderProducts(page, filter) {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
-  let filtered = products.filter(p => filter === "*" || (p.category && p.category === filter.substring(1)));
+
+  let filtered = products.filter(
+    (p) => filter === "*" || (p.category && p.category === filter.substring(1))
+  );
+
   const start = (page - 1) * productsPerPage;
   const end = start + productsPerPage;
   const pageProducts = filtered.slice(start, end);
 
-  pageProducts.forEach(p => {
+  pageProducts.forEach((p) => {
     const div = document.createElement("div");
     div.className = "col-lg-4 col-md-4 all " + (p.category || "");
+    
+    const images = p.images.split(',').map(img => img.trim());
+    const sliderHTML = `
+      <div class="product-slider" data-images="${p.images}">
+        <img src="${images[0]}" alt="${p.name}">
+        <div class="slider-indicators">
+          ${images.map((_, i) => `<span class="${i === 0 ? 'active' : ''}"></span>`).join('')}
+        </div>
+      </div>
+    `;
+
     div.innerHTML = `
       <div class="product-item">
-        <div class="product-carousel owl-carousel">
-          <img src="${p.images}" alt="${p.name}">
-          <!-- You can add more <img> tags here for multiple pictures -->
-        </div>
+        ${sliderHTML}
         <div class="down-content">
           <h4>${p.name}</h4>
           <h6>₹${p.price}</h6>
@@ -201,25 +230,35 @@ function renderProducts(page, filter) {
       </div>
     `;
     list.appendChild(div);
-
-    // Initialize carousel for this product
-    $(div).find('.product-carousel').owlCarousel({
-      items:1,
-      loop:true,
-      nav:true,
-      dots:true
-    });
   });
 
   const totalPages = Math.ceil(filtered.length / productsPerPage);
   renderPagination(totalPages);
+
+  initProductSliders(); // Initialize slider for all products
+}
+
+function initProductSliders() {
+  document.querySelectorAll('.product-slider').forEach(slider => {
+    const images = slider.dataset.images.split(',').map(img => img.trim());
+    const imgTag = slider.querySelector('img');
+    const indicators = slider.querySelectorAll('.slider-indicators span');
+
+    indicators.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        imgTag.src = images[index];
+        indicators.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+      });
+    });
+  });
 }
 
 function getActiveFilter() {
   return document.querySelector(".filters li.active").getAttribute("data-filter");
 }
 
-// Filters
+// Filter clicks
 document.querySelectorAll(".filters li").forEach(li => {
   li.addEventListener("click", () => {
     document.querySelectorAll(".filters li").forEach(el => el.classList.remove("active"));
