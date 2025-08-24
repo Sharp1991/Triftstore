@@ -9,7 +9,28 @@
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
   <style>
-    /* Pagination below products */
+    /* Bigger product cards */
+    .product-item {
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        background: #fff;
+    }
+
+    /* Carousel images inside product card */
+    .product-carousel img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .down-content {
+        padding: 15px 0;
+    }
+
+    /* Pagination */
     .pages {
       display: flex;
       justify-content: center;
@@ -19,6 +40,7 @@
       margin-bottom: 50px;
       padding: 0;
     }
+
     .pages li { list-style: none; }
     .pages li a {
       display: inline-block;
@@ -29,16 +51,11 @@
       text-decoration: none;
       transition: background 0.3s;
     }
+
     .pages li a:hover,
     .pages li a.active {
       background: #ff6600;
       color: #fff;
-    }
-    /* Owl carousel inside product */
-    .product-carousel .item img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
     }
   </style>
 </head>
@@ -89,15 +106,19 @@
           </ul>
         </div>
       </div>
+
       <div class="col-md-12">
         <div class="filters-content">
           <div class="row grid" id="product-list">
-            <!-- Products will load dynamically from Google Sheet -->
+            <!-- Products will load here dynamically -->
           </div>
         </div>
       </div>
+
       <div class="col-md-12 text-center">
-        <ul class="pages" id="pagination"></ul>
+        <ul class="pages" id="pagination">
+          <!-- Page numbers generated here -->
+        </ul>
       </div>
     </div>
   </div>
@@ -120,7 +141,6 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/owl.js"></script>
-
 <script>
 const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
 let products = [];
@@ -158,9 +178,7 @@ function renderPagination(totalPages) {
 function renderProducts(page, filter) {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
-  let filtered = products.filter(
-    p => filter === "*" || (p.category && p.category === filter.substring(1))
-  );
+  let filtered = products.filter(p => filter === "*" || (p.category && p.category === filter.substring(1)));
   const start = (page - 1) * productsPerPage;
   const end = start + productsPerPage;
   const pageProducts = filtered.slice(start, end);
@@ -168,18 +186,11 @@ function renderProducts(page, filter) {
   pageProducts.forEach(p => {
     const div = document.createElement("div");
     div.className = "col-lg-4 col-md-4 all " + (p.category || "");
-    
-    // Split multiple image URLs by comma
-    const imageUrls = p.images.split(",").map(url => url.trim());
-    let carouselItems = "";
-    imageUrls.forEach(url => {
-      carouselItems += `<div class="item"><img src="${url}" alt="${p.name}"></div>`;
-    });
-
     div.innerHTML = `
       <div class="product-item">
         <div class="product-carousel owl-carousel">
-          ${carouselItems}
+          <img src="${p.images}" alt="${p.name}">
+          <!-- You can add more <img> tags here for multiple pictures -->
         </div>
         <div class="down-content">
           <h4>${p.name}</h4>
@@ -190,25 +201,25 @@ function renderProducts(page, filter) {
       </div>
     `;
     list.appendChild(div);
+
+    // Initialize carousel for this product
+    $(div).find('.product-carousel').owlCarousel({
+      items:1,
+      loop:true,
+      nav:true,
+      dots:true
+    });
   });
 
   const totalPages = Math.ceil(filtered.length / productsPerPage);
   renderPagination(totalPages);
-
-  // Initialize Owl Carousel for all product carousels
-  $('.product-carousel').owlCarousel({
-    items: 1,
-    loop: true,
-    margin: 10,
-    nav: true
-  });
 }
 
 function getActiveFilter() {
   return document.querySelector(".filters li.active").getAttribute("data-filter");
 }
 
-// Filter clicks
+// Filters
 document.querySelectorAll(".filters li").forEach(li => {
   li.addEventListener("click", () => {
     document.querySelectorAll(".filters li").forEach(el => el.classList.remove("active"));
@@ -220,5 +231,6 @@ document.querySelectorAll(".filters li").forEach(li => {
 
 fetchProducts();
 </script>
+
 </body>
 </html>
