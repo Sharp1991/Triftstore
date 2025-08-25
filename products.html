@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
   <style>
-    /* Bigger product cards */
+    /* Product card styling */
     .product-item {
         padding: 20px;
         border: 1px solid #eee;
@@ -30,7 +30,7 @@
         padding: 15px 0;
     }
 
-    /* Pagination */
+    /* Pagination styling */
     .pages {
       display: flex;
       justify-content: center;
@@ -40,7 +40,6 @@
       margin-bottom: 50px;
       padding: 0;
     }
-
     .pages li { list-style: none; }
     .pages li a {
       display: inline-block;
@@ -51,7 +50,6 @@
       text-decoration: none;
       transition: background 0.3s;
     }
-
     .pages li a:hover,
     .pages li a.active {
       background: #ff6600;
@@ -110,14 +108,14 @@
       <div class="col-md-12">
         <div class="filters-content">
           <div class="row grid" id="product-list">
-            <!-- Products will load here dynamically -->
+            <!-- Products load dynamically -->
           </div>
         </div>
       </div>
 
       <div class="col-md-12 text-center">
         <ul class="pages" id="pagination">
-          <!-- Page numbers generated here -->
+          <!-- Page numbers generated -->
         </ul>
       </div>
     </div>
@@ -186,11 +184,15 @@ function renderProducts(page, filter) {
   pageProducts.forEach(p => {
     const div = document.createElement("div");
     div.className = "col-lg-4 col-md-4 all " + (p.category || "");
+    
+    // Support multiple images
+    const images = p.images.split(',').map(img => img.trim());
+    const carouselImgs = images.map(img => `<img src="${img}" alt="${p.name}">`).join('');
+
     div.innerHTML = `
       <div class="product-item">
         <div class="product-carousel owl-carousel">
-          <img src="${p.images}" alt="${p.name}">
-          <!-- You can add more <img> tags here for multiple pictures -->
+          ${carouselImgs}
         </div>
         <div class="down-content">
           <h4>${p.name}</h4>
@@ -202,7 +204,7 @@ function renderProducts(page, filter) {
     `;
     list.appendChild(div);
 
-    // Initialize carousel for this product
+    // Initialize carousel
     $(div).find('.product-carousel').owlCarousel({
       items:1,
       loop:true,
