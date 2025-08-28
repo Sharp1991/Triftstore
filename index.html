@@ -1,86 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thrift Sixteen</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-      line-height: 1.6;
-    }
-    h1, h2, h3, h4 { font-weight: 700; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thrift Sixteen</title>
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/fontawesome.css">
+<link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
+<link rel="stylesheet" href="assets/css/owl.css">
+<style>
+  body { font-family: 'Poppins', sans-serif; }
 
-    header {
-      background: #fff;
-      padding: 15px 0;
-      border-bottom: 1px solid #eee;
-    }
-    .navbar-brand h2 {
-      margin: 0;
-      font-weight: 700;
-    }
-    .navbar-brand em {
-      color: #ff6600;
-      font-style: normal;
-    }
+  /* Hero Section */
+  .hero {
+    background: url('assets/images/hero-bg.jpg') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 120px 20px;
+  }
+  .hero h1 { font-weight: 700; font-size: 3rem; margin-bottom: 20px; }
+  .hero p { font-size: 1.2rem; }
 
-    .hero {
-      background: url('assets/images/hero-bg.jpg') no-repeat center center/cover;
-      color: #fff;
-      text-align: center;
-      padding: 100px 20px;
-    }
-    .hero h1 { font-size: 42px; font-weight: 700; }
-    .hero p { font-size: 18px; font-weight: 300; margin: 20px 0; }
-    .btn-main {
-      background: #ff6600;
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .btn-main:hover { background: #e65500; }
+  /* Tabs */
+  .product-tabs { margin: 50px 0; }
+  .product-tabs ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 0; flex-wrap: wrap; }
+  .product-tabs ul li {
+    cursor: pointer;
+    padding: 10px 20px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  .product-tabs ul li.active, .product-tabs ul li:hover { background: #ff6600; color: #fff; }
 
-    .story {
-      padding: 60px 20px;
-      text-align: center;
-      background: #f9f9f9;
-    }
-    .story h2 { font-size: 28px; margin-bottom: 15px; }
-    .story p { max-width: 700px; margin: 0 auto; font-weight: 400; }
+  /* Product Grid */
+  .product-item {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    background: #fff;
+    text-align: center;
+  }
+  .product-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
+  .product-item h4 { margin: 15px 0 5px; }
+  .product-item h6 { color: #ff6600; margin-bottom: 10px; }
+  .product-item p { font-size: 0.9rem; margin-bottom: 10px; }
 
-    .products-preview {
-      padding: 60px 20px;
-    }
+  /* Artisan Section */
+  .artisan {
+    padding: 50px 20px;
+    background: #f4f4f4;
+    text-align: center;
+  }
+  .artisan img { width: 200px; height: 200px; object-fit: cover; border-radius: 50%; margin-bottom: 20px; }
+  .artisan h3 { margin-bottom: 10px; }
+  .artisan p { max-width: 600px; margin: auto; font-size: 1rem; }
 
-    .tab-section {
-      padding: 60px 20px;
-    }
-    .tab-content {
-      padding: 20px;
-      border: 1px solid #eee;
-      border-top: none;
-    }
-
-    .footer {
-      background: #222;
-      color: #ccc;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
-  </style>
+  /* Pagination */
+  .pages { display: flex; justify-content: center; gap: 8px; margin-top: 30px; margin-bottom: 50px; padding: 0; }
+  .pages li { list-style: none; }
+  .pages li a {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #f4f4f4;
+    color: #333;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .pages li a:hover, .pages li a.active { background: #ff6600; color: #fff; }
+</style>
 </head>
 <body>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -88,10 +84,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item active"><a class="nav-link" href="products.html">Our Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
         </ul>
       </div>
     </div>
@@ -100,62 +96,150 @@
 
 <!-- Hero Section -->
 <section class="hero">
-  <h1>Curated Pre-Loved & Handcrafted Finds</h1>
-  <p>From timeless thrift pieces to Northeast artisan creations — discover stories woven into every item.</p>
-  <a href="products.html" class="btn-main">Shop Now</a>
+  <h1>Thrift Sixteen</h1>
+  <p>Unique Styles & Local Artisans from Northeast India</p>
 </section>
 
-<!-- Story -->
-<section class="story">
-  <h2>Why Thrift Sixteen?</h2>
-  <p>We believe in conscious fashion. Every product you buy supports local artisans, reduces waste, 
-     and carries a unique story from the heart of Northeast India.</p>
-</section>
-
-<!-- Tab Section -->
-<section class="tab-section container">
-  <h2 class="text-center mb-4">Explore More</h2>
-  <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="featured-tab" data-toggle="tab" href="#featured" role="tab">Featured</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="sale-tab" data-toggle="tab" href="#sale" role="tab">Jumbo Sale</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="artist-tab" data-toggle="tab" href="#artist" role="tab">Artisan of the Month</a>
-    </li>
+<!-- Product Tabs -->
+<section class="product-tabs">
+  <ul>
+    <li class="active" data-filter="*">All Products</li>
+    <li data-filter=".featured">Featured</li>
+    <li data-filter=".flash">Flash Deals</li>
+    <li data-filter=".jumbo">Jumbo Sale</li>
+    <li data-filter=".artisan">Artisan Picks</li>
   </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="featured" role="tabpanel">
-      <p>Our handpicked items loved by customers — always in demand.</p>
-      <a href="products.html" class="btn-main">See Featured</a>
-    </div>
-    <div class="tab-pane fade" id="sale" role="tabpanel">
-      <p>Exclusive discounted pieces — grab them before they’re gone!</p>
-      <a href="products.html" class="btn-main">See Sale</a>
-    </div>
-    <div class="tab-pane fade" id="artist" role="tabpanel">
-      <p>Each month we feature a Northeast artisan and their craft.</p>
-      <a href="about.html" class="btn-main">Meet the Artisan</a>
-    </div>
-  </div>
 </section>
 
-<!-- Products Preview -->
-<section class="products-preview">
-  <div class="container text-center">
-    <h2>New Arrivals</h2>
-    <p>Fresh drops — handpicked just for you.</p>
-    <a href="products.html" class="btn-main">Explore Collection</a>
+<!-- Product Grid -->
+<div class="products">
+  <div class="container">
+    <div class="row grid" id="product-list">
+      <!-- Products load dynamically from Google Sheet -->
+    </div>
+    <div class="col-md-12 text-center">
+      <ul class="pages" id="pagination"></ul>
+    </div>
   </div>
+</div>
+
+<!-- Featured Artisan -->
+<section class="artisan">
+  <img src="assets/images/featured-artisan.jpg" alt="Featured Artisan">
+  <h3>Artisan of the Month</h3>
+  <p>Meet [Artisan Name], crafting unique, handmade bags and accessories with love and skill, blending tradition with modern design.</p>
 </section>
 
-<footer class="footer">
-  <p>&copy; 2025 Thrift Sixteen. Designed with ❤️ in Meghalaya.</p>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-content">
+          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd. - Design: 
+            <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/owl.js"></script>
+
+<script>
+const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
+let products = [];
+let currentPage = 1;
+const productsPerPage = 6;
+
+// Fetch products
+function fetchProducts() {
+  fetch(sheetAPI)
+    .then(res => res.json())
+    .then(data => {
+      products = data;
+      renderProducts(currentPage, "*");
+    });
+}
+
+// Render pagination
+function renderPagination(totalPages) {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+  for (let i=1; i<=totalPages; i++){
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href="#";
+    a.textContent=i;
+    if(i===currentPage) a.classList.add("active");
+    a.addEventListener("click", e=>{
+      e.preventDefault();
+      currentPage=i;
+      renderProducts(currentPage, getActiveFilter());
+    });
+    li.appendChild(a);
+    pagination.appendChild(li);
+  }
+}
+
+// Render products
+function renderProducts(page, filter){
+  const list = document.getElementById("product-list");
+  list.innerHTML="";
+  let filtered = products.filter(p => filter==="*" || (p.category && p.category===filter.substring(1)));
+  const start = (page-1)*productsPerPage;
+  const end = start+productsPerPage;
+  const pageProducts = filtered.slice(start,end);
+
+  pageProducts.forEach(p=>{
+    const div = document.createElement("div");
+    div.className="col-lg-4 col-md-6 all "+(p.category||"");
+    div.innerHTML=`
+      <div class="product-item">
+        <div class="product-carousel owl-carousel">
+          ${p.images.split(',').map(img=>`<img src="${img.trim()}" alt="${p.name}">`).join('')}
+        </div>
+        <div class="down-content">
+          <h4>${p.name}</h4>
+          <h6>₹${p.price}</h6>
+          <p>${p.description}</p>
+          <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
+        </div>
+      </div>
+    `;
+    list.appendChild(div);
+
+    $(div).find('.product-carousel').owlCarousel({
+      items:1,
+      loop:true,
+      nav:true,
+      dots:true
+    });
+  });
+
+  const totalPages = Math.ceil(filtered.length/productsPerPage);
+  renderPagination(totalPages);
+}
+
+// Get active tab filter
+function getActiveFilter() {
+  return document.querySelector(".product-tabs li.active").getAttribute("data-filter");
+}
+
+// Tab click events
+document.querySelectorAll(".product-tabs li").forEach(li=>{
+  li.addEventListener("click", ()=>{
+    document.querySelectorAll(".product-tabs li").forEach(el=>el.classList.remove("active"));
+    li.classList.add("active");
+    currentPage=1;
+    renderProducts(currentPage, getActiveFilter());
+  });
+});
+
+fetchProducts();
+</script>
+
 </body>
 </html>
