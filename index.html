@@ -1,80 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thrift Sixteen</title>
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/fontawesome.css">
-<link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
-<link rel="stylesheet" href="assets/css/owl.css">
-<style>
-  body { font-family: 'Poppins', sans-serif; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrift Sixteen</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-  /* Hero Section */
-  .hero {
-    background: url('assets/images/hero-bg.jpg') center/cover no-repeat;
-    color: #fff;
-    text-align: center;
-    padding: 120px 20px;
-  }
-  .hero h1 { font-weight: 700; font-size: 3rem; margin-bottom: 20px; }
-  .hero p { font-size: 1.2rem; }
+  <!-- Bootstrap CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
 
-  /* Tabs */
-  .product-tabs { margin: 50px 0; }
-  .product-tabs ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 0; flex-wrap: wrap; }
-  .product-tabs ul li {
-    cursor: pointer;
-    padding: 10px 20px;
-    background: #f4f4f4;
-    border-radius: 8px;
-    transition: all 0.3s;
-  }
-  .product-tabs ul li.active, .product-tabs ul li:hover { background: #ff6600; color: #fff; }
+  <style>
+    .product-item {
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      background: #fff;
+    }
 
-  /* Product Grid */
-  .product-item {
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    background: #fff;
-    text-align: center;
-  }
-  .product-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
-  .product-item h4 { margin: 15px 0 5px; }
-  .product-item h6 { color: #ff6600; margin-bottom: 10px; }
-  .product-item p { font-size: 0.9rem; margin-bottom: 10px; }
+    .product-carousel img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
 
-  /* Artisan Section */
-  .artisan {
-    padding: 50px 20px;
-    background: #f4f4f4;
-    text-align: center;
-  }
-  .artisan img { width: 200px; height: 200px; object-fit: cover; border-radius: 50%; margin-bottom: 20px; }
-  .artisan h3 { margin-bottom: 10px; }
-  .artisan p { max-width: 600px; margin: auto; font-size: 1rem; }
+    .down-content { padding: 10px 0; }
 
-  /* Pagination */
-  .pages { display: flex; justify-content: center; gap: 8px; margin-top: 30px; margin-bottom: 50px; padding: 0; }
-  .pages li { list-style: none; }
-  .pages li a {
-    display: inline-block;
-    padding: 8px 14px;
-    background: #f4f4f4;
-    color: #333;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 0.3s;
-  }
-  .pages li a:hover, .pages li a.active { background: #ff6600; color: #fff; }
-</style>
+    .nav-tabs .nav-link.active { background: #ff6600; color: #fff; border-radius: 5px; }
+    .nav-tabs .nav-link { border-radius: 5px; }
+  </style>
 </head>
+
 <body>
 
+<!-- ***** Preloader Start ***** -->
+<div id="preloader">
+  <div class="jumper"><div></div><div></div><div></div></div>
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- Header -->
 <header>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
@@ -84,8 +53,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item active"><a class="nav-link" href="products.html">Our Products</a></li>
+          <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
         </ul>
@@ -94,56 +63,55 @@
   </nav>
 </header>
 
-<!-- Hero Section -->
-<section class="hero">
-  <h1>Thrift Sixteen</h1>
-  <p>Unique Styles & Local Artisans from Northeast India</p>
-</section>
-
-<!-- Product Tabs -->
-<section class="product-tabs">
-  <ul>
-    <li class="active" data-filter="*">All Products</li>
-    <li data-filter=".featured">Featured</li>
-    <li data-filter=".flash">Flash Deals</li>
-    <li data-filter=".jumbo">Jumbo Sale</li>
-    <li data-filter=".artisan">Artisan Picks</li>
-  </ul>
-</section>
-
-<!-- Product Grid -->
-<div class="products">
-  <div class="container">
-    <div class="row grid" id="product-list">
-      <!-- Products load dynamically from Google Sheet -->
+<!-- Banner / Slides -->
+<div class="banner header-text">
+  <div class="owl-banner owl-carousel">
+    <div class="banner-item-01">
+      <div class="text-content"><h4>Best Offer</h4><h2>New Arrivals On Sale</h2></div>
     </div>
-    <div class="col-md-12 text-center">
-      <ul class="pages" id="pagination"></ul>
+    <div class="banner-item-02">
+      <div class="text-content"><h4>Flash Deals</h4><h2>Grab Your Best Products</h2></div>
+    </div>
+    <div class="banner-item-03">
+      <div class="text-content"><h4>Last Minute</h4><h2>Don’t Miss Out</h2></div>
     </div>
   </div>
 </div>
 
-<!-- Featured Artisan -->
-<section class="artisan">
-  <img src="assets/images/featured-artisan.jpg" alt="Featured Artisan">
-  <h3>Artisan of the Month</h3>
-  <p>Meet [Artisan Name], crafting unique, handmade bags and accessories with love and skill, blending tradition with modern design.</p>
-</section>
+<!-- Product Tabs Section -->
+<div class="container mt-5">
+  <ul class="nav nav-tabs" id="productTabs" role="tablist">
+    <li class="nav-item"><a class="nav-link active" id="featured-tab" data-toggle="tab" href="#featured">Featured Products</a></li>
+    <li class="nav-item"><a class="nav-link" id="secondhand-tab" data-toggle="tab" href="#secondhand">Second-hand</a></li>
+    <li class="nav-item"><a class="nav-link" id="brandnew-tab" data-toggle="tab" href="#brandnew">Brand-new</a></li>
+    <li class="nav-item"><a class="nav-link" id="artist-tab" data-toggle="tab" href="#artist">Favourite Artist</a></li>
+    <li class="nav-item"><a class="nav-link" id="all-tab" data-toggle="tab" href="#all">All Products</a></li>
+  </ul>
 
-<footer>
+  <div class="tab-content mt-4" id="productTabsContent">
+    <div class="tab-pane fade show active" id="featured" role="tabpanel"></div>
+    <div class="tab-pane fade" id="secondhand" role="tabpanel"></div>
+    <div class="tab-pane fade" id="brandnew" role="tabpanel"></div>
+    <div class="tab-pane fade" id="artist" role="tabpanel"></div>
+    <div class="tab-pane fade" id="all" role="tabpanel"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="mt-5">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="inner-content">
           <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd. - Design: 
-            <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a>
-          </p>
+            <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
         </div>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- Scripts -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/owl.js"></script>
@@ -151,65 +119,57 @@
 <script>
 const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
 let products = [];
-let currentPage = 1;
-const productsPerPage = 6;
 
-// Fetch products
 function fetchProducts() {
   fetch(sheetAPI)
     .then(res => res.json())
     .then(data => {
       products = data;
-      renderProducts(currentPage, "*");
+      renderTab("featured");
+      renderTab("secondhand");
+      renderTab("brandnew");
+      renderTab("artist");
+      renderTab("all");
     });
 }
 
-// Render pagination
-function renderPagination(totalPages) {
-  const pagination = document.getElementById("pagination");
-  pagination.innerHTML = "";
-  for (let i=1; i<=totalPages; i++){
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.href="#";
-    a.textContent=i;
-    if(i===currentPage) a.classList.add("active");
-    a.addEventListener("click", e=>{
-      e.preventDefault();
-      currentPage=i;
-      renderProducts(currentPage, getActiveFilter());
-    });
-    li.appendChild(a);
-    pagination.appendChild(li);
+// Helper: filter products by tag
+function filterProducts(tabId) {
+  switch(tabId) {
+    case "featured": return products.filter(p => p.tags && p.tags.includes("Featured"));
+    case "secondhand": return products.filter(p => p.tags && p.tags.includes("Second-hand"));
+    case "brandnew": return products.filter(p => p.tags && p.tags.includes("Brand-new"));
+    case "artist": return products.filter(p => p.tags && p.tags.includes("Favourite Artist"));
+    case "all": return products;
   }
 }
 
-// Render products
-function renderProducts(page, filter){
-  const list = document.getElementById("product-list");
-  list.innerHTML="";
-  let filtered = products.filter(p => filter==="*" || (p.category && p.category===filter.substring(1)));
-  const start = (page-1)*productsPerPage;
-  const end = start+productsPerPage;
-  const pageProducts = filtered.slice(start,end);
+// Render a tab
+function renderTab(tabId) {
+  const container = document.getElementById(tabId);
+  container.innerHTML = "";
 
-  pageProducts.forEach(p=>{
+  const filtered = filterProducts(tabId);
+  if(filtered.length === 0) {
+    container.innerHTML = "<p>No products available.</p>";
+    return;
+  }
+
+  filtered.forEach(p => {
     const div = document.createElement("div");
-    div.className="col-lg-4 col-md-6 all "+(p.category||"");
-    div.innerHTML=`
-      <div class="product-item">
-        <div class="product-carousel owl-carousel">
-          ${p.images.split(',').map(img=>`<img src="${img.trim()}" alt="${p.name}">`).join('')}
-        </div>
-        <div class="down-content">
-          <h4>${p.name}</h4>
-          <h6>₹${p.price}</h6>
-          <p>${p.description}</p>
-          <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
-        </div>
+    div.className = "col-md-4 product-item";
+    div.innerHTML = `
+      <div class="product-carousel owl-carousel">
+        ${p.images.split(",").map(img => `<img src="${img.trim()}" alt="${p.name}">`).join("")}
+      </div>
+      <div class="down-content">
+        <h4>${p.name}</h4>
+        <h6>₹${p.price}</h6>
+        <p>${p.description}</p>
+        <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
       </div>
     `;
-    list.appendChild(div);
+    container.appendChild(div);
 
     $(div).find('.product-carousel').owlCarousel({
       items:1,
@@ -218,25 +178,7 @@ function renderProducts(page, filter){
       dots:true
     });
   });
-
-  const totalPages = Math.ceil(filtered.length/productsPerPage);
-  renderPagination(totalPages);
 }
-
-// Get active tab filter
-function getActiveFilter() {
-  return document.querySelector(".product-tabs li.active").getAttribute("data-filter");
-}
-
-// Tab click events
-document.querySelectorAll(".product-tabs li").forEach(li=>{
-  li.addEventListener("click", ()=>{
-    document.querySelectorAll(".product-tabs li").forEach(el=>el.classList.remove("active"));
-    li.classList.add("active");
-    currentPage=1;
-    renderProducts(currentPage, getActiveFilter());
-  });
-});
 
 fetchProducts();
 </script>
