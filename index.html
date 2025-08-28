@@ -1,51 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Thrift Sixteen - A thrift company from Meghalaya, Northeast India.">
   <meta name="author" content="Thrift Sixteen">
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
   <title>Thrift Sixteen</title>
 
-  <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Additional CSS Files -->
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
 
   <style>
-    /* Product cards */
-    .product-item { padding: 20px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 30px; background: #fff; }
-    .product-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
-    .down-content { padding: 10px 0; }
-
-    /* Tabs */
-    .tab-list { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; padding: 0; list-style: none; }
-    .tab-list li { cursor: pointer; padding: 8px 16px; background: #f4f4f4; border-radius: 6px; }
-    .tab-list li.active, .tab-list li:hover { background: #ff6600; color: #fff; }
-
-    /* Pagination */
-    .pages { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 30px; padding: 0; }
-    .pages li { list-style: none; }
-    .pages li a { display: inline-block; padding: 8px 14px; background: #f4f4f4; color: #333; border-radius: 6px; text-decoration: none; }
-    .pages li a:hover, .pages li a.active { background: #ff6600; color: #fff; }
+    .tab-button { 
+      cursor: pointer; 
+      margin-right: 10px; 
+      padding: 8px 16px; 
+      background: #f4f4f4; 
+      border-radius: 6px; 
+      display:inline-block; 
+      transition: all 0.3s ease;
+    }
+    .tab-button.active { 
+      background: #ff6600; 
+      color: #fff; 
+    }
+    .product-item { 
+      padding: 20px; 
+      border: 1px solid #eee; 
+      border-radius: 10px; 
+      margin-bottom: 30px; 
+      background: #fff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .product-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .down-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .down-content p {
+      flex-grow: 1;
+    }
+    .artist-section {
+      background: #f9f9f9;
+      padding: 40px 0;
+      margin: 40px 0;
+      border-radius: 10px;
+    }
+    .featured-slider .item {
+      padding: 15px;
+    }
+    .featured-slider .product-item {
+      margin-bottom: 0;
+    }
+    .tabs-container {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+    .tabs-wrapper {
+      display: inline-flex;
+    }
   </style>
 </head>
-
 <body>
 
   <!-- Header -->
-  <header class="">
+  <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container">
         <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" 
-          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -59,142 +100,204 @@
     </nav>
   </header>
 
-  <!-- Slider -->
+  <!-- Banner / Slides -->
   <div class="banner header-text">
     <div class="owl-banner owl-carousel">
       <div class="banner-item-01">
-        <div class="text-content"><h4>Best Offer</h4><h2>New Arrivals On Sale</h2></div>
+        <div class="text-content">
+          <h4>Best Offer</h4>
+          <h2>New Arrivals On Sale</h2>
+        </div>
       </div>
       <div class="banner-item-02">
-        <div class="text-content"><h4>Flash Deals</h4><h2>Grab Your Best Products</h2></div>
+        <div class="text-content">
+          <h4>Flash Deals</h4>
+          <h2>Grab Your Best Products</h2>
+        </div>
       </div>
       <div class="banner-item-03">
-        <div class="text-content"><h4>Last Minute</h4><h2>Don’t Miss Out</h2></div>
+        <div class="text-content">
+          <h4>Last Minute</h4>
+          <h2>Don't Miss Out</h2>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Tabs for product categories -->
-  <div class="container mt-4">
-    <ul class="tab-list">
-      <li class="active" data-filter="featured">Featured</li>
-      <li data-filter="second-hand">Second Hand</li>
-      <li data-filter="brand-new">Brand New</li>
-      <li data-filter="artist">Artist Picks</li>
-      <li data-filter="all">All Products</li>
-    </ul>
+  <!-- Featured Products Slider -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Featured Products</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="featured-slider owl-carousel">
+          <!-- Featured products will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Product list -->
+  <!-- Monthly Artist Info -->
   <div class="container">
-    <div class="row" id="product-list"></div>
-    <ul class="pages" id="pagination"></ul>
+    <div class="artist-section">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="https://via.placeholder.com/300x300" alt="Monthly Artist" class="img-fluid rounded-circle">
+        </div>
+        <div class="col-md-8">
+          <h2>Artist of the Month</h2>
+          <h4>Jane Doe</h4>
+          <p>Jane is a talented local artist from Shillong, Meghalaya, specializing in traditional Northeast Indian patterns and contemporary designs. Her work beautifully blends traditional motifs with modern aesthetics.</p>
+          <p>This month, we're featuring her exclusive collection of hand-painted jackets and custom-designed thrift pieces that celebrate the cultural heritage of Northeast India while promoting sustainable fashion.</p>
+          <a href="#" class="btn btn-primary">View Artist's Collection</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Tabs -->
+  <div class="container mt-5">
+    <div class="tabs-container">
+      <div class="tabs-wrapper">
+        <div class="tab-button active" data-tab="all">All Products</div>
+        <div class="tab-button" data-tab="secondhand">Second Hand</div>
+        <div class="tab-button" data-tab="brandnew">Brand New</div>
+        <div class="tab-button" data-tab="artist">Favourite Artist</div>
+      </div>
+    </div>
+
+    <div class="row" id="product-list">
+      <!-- Products will load dynamically here -->
+    </div>
   </div>
 
   <!-- Footer -->
-  <footer>
+  <footer class="mt-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="inner-content">
-            <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
-              - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-          </div>
+        <div class="col-md-12 text-center">
+          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
+            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- JS Scripts -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/owl.js"></script>
 
   <script>
-    const sheetAPI = "YOUR_GOOGLE_SHEET_API_LINK";
+    const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
     let products = [];
-    let currentPage = 1;
-    const productsPerPage = 6;
-    let currentFilter = "featured";
 
-    function fetchProducts() {
-      fetch(sheetAPI)
-        .then(res => res.json())
-        .then(data => {
-          products = data;
-          renderProducts(currentPage, currentFilter);
-        });
+    fetch(sheetAPI)
+      .then(res => res.json())
+      .then(data => {
+        products = data;
+        renderFeaturedProducts();
+        renderProducts('all'); // default tab
+      });
+
+    function renderFeaturedProducts() {
+      const featuredSlider = document.querySelector('.featured-slider');
+      // Get only featured products (assuming there's a property to identify them)
+      const featuredProducts = products.filter(p => p.featured === 'yes');
+      
+      // If no featured products, use first 6 products as fallback
+      const displayProducts = featuredProducts.length > 0 ? featuredProducts : products.slice(0, 6);
+      
+      displayProducts.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+          <div class="product-item">
+            <img src="${p.images}" alt="${p.name}" class="img-fluid">
+            <div class="down-content">
+              <h4>${p.name}</h4>
+              <h6>₹${p.price}</h6>
+              <p>${p.description}</p>
+              <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success mt-auto">Buy on WhatsApp</a>
+            </div>
+          </div>
+        `;
+        featuredSlider.appendChild(div);
+      });
+      
+      // Initialize featured products slider
+      $('.featured-slider').owlCarousel({
+        loop: true,
+        margin: 25,
+        nav: true,
+        dots: false,
+        responsive: {
+          0: { items: 1 },
+          768: { items: 2 },
+          992: { items: 3 }
+        }
+      });
     }
 
-    function renderProducts(page, filter) {
-      const list = document.getElementById("product-list");
-      list.innerHTML = "";
-      let filtered = products.filter(p => filter === "all" || (p.category && p.category === filter));
-      const start = (page - 1) * productsPerPage;
-      const end = start + productsPerPage;
-      const pageProducts = filtered.slice(start, end);
+    function renderProducts(tab) {
+      const list = document.getElementById('product-list');
+      list.innerHTML = '';
+      
+      let filtered = products;
+      
+      if (tab !== 'all') {
+        filtered = products.filter(p => {
+          if (!p.category) return false;
+          return p.category.toLowerCase() === tab;
+        });
+      }
 
-      pageProducts.forEach(p => {
-        const div = document.createElement("div");
-        div.className = "col-md-4 product-item";
+      if (filtered.length === 0) {
+        list.innerHTML = '<div class="col-12 text-center"><p>No products found in this category.</p></div>';
+        return;
+      }
+
+      filtered.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'col-md-4';
         div.innerHTML = `
-          <img src="${p.images}" alt="${p.name}">
-          <div class="down-content">
-            <h4>${p.name}</h4>
-            <h6>₹${p.price}</h6>
-            <p>${p.description}</p>
-            <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
+          <div class="product-item">
+            <img src="${p.images}" alt="${p.name}" class="img-fluid">
+            <div class="down-content">
+              <h4>${p.name}</h4>
+              <h6>₹${p.price}</h6>
+              <p>${p.description}</p>
+              <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success mt-auto">Buy on WhatsApp</a>
+            </div>
           </div>
         `;
         list.appendChild(div);
       });
-
-      // Pagination
-      const totalPages = Math.ceil(filtered.length / productsPerPage);
-      const pagination = document.getElementById("pagination");
-      pagination.innerHTML = "";
-      for (let i = 1; i <= totalPages; i++) {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = "#";
-        a.textContent = i;
-        if (i === currentPage) a.classList.add("active");
-        a.addEventListener("click", e => {
-          e.preventDefault();
-          currentPage = i;
-          renderProducts(currentPage, currentFilter);
-        });
-        li.appendChild(a);
-        pagination.appendChild(li);
-      }
     }
 
-    // Tabs click
-    document.querySelectorAll(".tab-list li").forEach(tab => {
-      tab.addEventListener("click", () => {
-        document.querySelectorAll(".tab-list li").forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-        currentFilter = tab.getAttribute("data-filter");
-        currentPage = 1;
-        renderProducts(currentPage, currentFilter);
+    // Tab click
+    document.querySelectorAll('.tab-button').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderProducts(tab.dataset.tab);
       });
     });
 
-    // Owl Carousel slider
-    $(document).ready(function(){
-      $(".owl-banner").owlCarousel({
-        items:1,
-        loop:true,
-        autoplay:true,
-        autoplayTimeout:5000,
-        nav:true,
-        dots:true
+    // Initialize banner slider
+    $(document).ready(function () {
+      $('.owl-banner').owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        dots: true
       });
     });
-
-    // Initial fetch
-    fetchProducts();
   </script>
-
 </body>
 </html>
