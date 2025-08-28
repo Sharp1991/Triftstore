@@ -5,262 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Thrift Sixteen - A thrift company from Meghalaya, Northeast India.">
   <meta name="author" content="Thrift Sixteen">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
   <title>Thrift Sixteen</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Owl Carousel CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
 
   <style>
-    :root {
-      --primary: #ff6600;
-      --secondary: #6a4a3a;
-      --light: #f8f9fa;
-      --dark: #212529;
-    }
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-      padding-top: 80px;
-    }
-    
-    /* Header Styles */
-    .navbar {
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 15px 0;
-    }
-    
-    .navbar-brand h2 {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--secondary);
-      margin: 0;
-    }
-    
-    .navbar-brand h2 em {
-      color: var(--primary);
-      font-style: normal;
-    }
-    
-    .nav-item {
-      margin: 0 5px;
-    }
-    
-    .nav-link {
-      color: var(--dark);
-      font-weight: 500;
-      position: relative;
-      padding: 5px 10px !important;
-    }
-    
-    .nav-link:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--primary);
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover:after, .nav-link.active:after {
-      width: 100%;
-    }
-    
-    /* Banner Styles */
-    .banner {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      margin: 30px 0;
-    }
-    
-    .banner-item {
-      height: 400px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-    
-    .banner-item-01 { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'); }
-    .banner-item-02 { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1174&q=80'); }
-    .banner-item-03 { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'); }
-    
-    .text-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-      width: 80%;
-    }
-    
-    .text-content h4 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    
-    .text-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    
-    /* Product Tabs */
-    .tabs-container {
-      margin: 40px 0;
-    }
-    
-    .tabs-wrapper {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 40px;
-    }
-    
-    .tab-button {
-      cursor: pointer;
-      padding: 12px 20px;
-      background: #f8f9fa;
-      border-radius: 50px;
-      display: inline-flex;
-      align-items: center;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-    
-    .tab-button.active {
-      background: var(--primary);
-      color: white;
-    }
-    
-    .tab-button:hover:not(.active) {
-      background: #e9ecef;
-    }
-    
-    .tab-button i {
-      margin-right: 8px;
-    }
-    
-    /* Product Items */
-    .product-item {
-      padding: 20px;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      background: #fff;
-      transition: all 0.3s ease;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .product-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    
-    .product-item img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-    
-    .down-content {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .down-content p {
-      flex-grow: 1;
-    }
-    
-    .btn-whatsapp {
-      background-color: #25D366;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      transition: all 0.3s ease;
-      margin-top: auto;
-    }
-    
-    .btn-whatsapp:hover {
-      background-color: #128C7E;
-      transform: translateY(-2px);
-    }
-    
-    .btn-whatsapp i {
-      margin-right: 8px;
-    }
-    
-    /* Footer */
-    footer {
-      background-color: var(--dark);
-      color: white;
-      padding: 40px 0 20px;
-      margin-top: 60px;
-    }
-    
-    footer p {
-      margin: 0;
-    }
-    
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      .text-content h2 {
-        font-size: 2rem;
-      }
-      
-      .banner-item {
-        height: 300px;
-      }
-      
-      .tabs-wrapper {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 10px;
-      }
-    }
+    .tab-button { cursor:pointer; margin-right:10px; padding:8px 16px; background:#f4f4f4; border-radius:6px; display:inline-block; text-decoration:none; color:#333; }
+    .tab-button:hover { background:#ff6600; color:#fff; }
+    .product-item { padding:20px; border:1px solid #eee; border-radius:10px; margin-bottom:30px; background:#fff; }
+    .artist-item { border:1px solid #eee; border-radius:10px; padding:15px; margin-bottom:30px; background:#fafafa; text-align:center; }
+    .artist-item img { width:100%; border-radius:50%; max-width:150px; margin-bottom:10px; }
   </style>
 </head>
 <body>
 
   <!-- Header -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <h2>Thrift <em>Sixteen</em></h2>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+        <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="products.html">Our Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
-            </li>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>
@@ -268,200 +43,103 @@
   </header>
 
   <!-- Banner / Slides -->
-  <div class="container">
-    <div class="banner">
-      <div class="owl-carousel owl-theme owl-banner">
-        <div class="banner-item banner-item-01">
-          <div class="text-content">
-            <h4>Best Offer</h4>
-            <h2>New Arrivals On Sale</h2>
-          </div>
-        </div>
-        <div class="banner-item banner-item-02">
-          <div class="text-content">
-            <h4>Flash Deals</h4>
-            <h2>Grab Your Best Products</h2>
-          </div>
-        </div>
-        <div class="banner-item banner-item-03">
-          <div class="text-content">
-            <h4>Last Minute</h4>
-            <h2>Don't Miss Out</h2>
-          </div>
-        </div>
-      </div>
+  <div class="banner header-text">
+    <div class="owl-banner owl-carousel">
+      <div class="banner-item-01"><div class="text-content"><h4>Best Offer</h4><h2>New Arrivals On Sale</h2></div></div>
+      <div class="banner-item-02"><div class="text-content"><h4>Flash Deals</h4><h2>Grab Your Best Products</h2></div></div>
+      <div class="banner-item-03"><div class="text-content"><h4>Last Minute</h4><h2>Don’t Miss Out</h2></div></div>
     </div>
   </div>
 
-  <!-- Product Tabs -->
-  <div class="container">
-    <div class="tabs-container">
-      <div class="tabs-wrapper">
-        <div class="tab-button active" data-tab="featured">
-          <i class="fas fa-star"></i> Featured
-        </div>
-        <div class="tab-button" data-tab="secondhand">
-          <i class="fas fa-recycle"></i> Second Hand
-        </div>
-        <div class="tab-button" data-tab="brandnew">
-          <i class="fas fa-tag"></i> Brand New
-        </div>
-        <div class="tab-button" data-tab="artist">
-          <i class="fas fa-palette"></i> Favourite Artist
-        </div>
-        <div class="tab-button" data-tab="all">
-          <i class="fas fa-th-list"></i> All Products
-        </div>
-      </div>
+  <!-- Product Tabs (links to products page) -->
+  <div class="container mt-5">
+    <div class="d-flex mb-4 flex-wrap">
+      <a href="products.html#featured" class="tab-button">Featured Products ★</a>
+      <a href="products.html#secondhand" class="tab-button">Second Hand ⟳</a>
+      <a href="products.html#brandnew" class="tab-button">Brand New ✨</a>
+      <a href="products.html#artist" class="tab-button">Favourite Artist 👩‍🎨</a>
+      <a href="products.html#all" class="tab-button">All Products</a>
+    </div>
+  </div>
 
-      <div class="row" id="product-list">
-        <!-- Products will load dynamically here -->
-      </div>
+  <!-- Featured Products Preview -->
+  <div class="container">
+    <h3>Featured Products</h3>
+    <div class="row" id="featured-products">
+      <!-- Top 4 featured products will be loaded here -->
+    </div>
+    <a href="products.html#featured" class="btn btn-primary mb-5">View All Featured Products</a>
+  </div>
+
+  <!-- Artist of the Month -->
+  <div class="container mt-5">
+    <h3>Artist of the Month</h3>
+    <div class="row" id="artist-month">
+      <!-- Artist info and picture -->
     </div>
   </div>
 
   <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.</p>
-          <p class="mt-2">- Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank" style="color: #fff;">TemplateMo</a></p>
-        </div>
-      </div>
+  <footer class="mt-5">
+    <div class="container text-center">
+      <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd. - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl.js"></script>
 
   <script>
     const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
     let products = [];
 
-    // Sample data for demonstration (will be replaced with API data)
-    const sampleProducts = [
-      {
-        name: "Vintage Denim Jacket",
-        price: 1299,
-        description: "A classic vintage denim jacket with subtle distressing details.",
-        images: "https://images.unsplash.com/photo-1544642899-f0d6e5f6ed6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
-        category: "secondhand",
-        "whatsapp link": "https://wa.me/1234567890?text=I'm interested in Vintage Denim Jacket"
-      },
-      {
-        name: "Handmade Tribal Scarf",
-        price: 899,
-        description: "Beautiful handmade scarf with traditional tribal patterns.",
-        images: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-        category: "artist",
-        "whatsapp link": "https://wa.me/1234567890?text=I'm interested in Handmade Tribal Scarf"
-      },
-      {
-        name: "Organic Cotton T-Shirt",
-        price: 599,
-        description: "Comfortable organic cotton t-shirt with unique print design.",
-        images: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1160&q=80",
-        category: "brandnew",
-        "whatsapp link": "https://wa.me/1234567890?text=I'm interested in Organic Cotton T-Shirt"
-      },
-      {
-        name: "Hand-Embroidered Skirt",
-        price: 1599,
-        description: "Elegant skirt with intricate hand embroidery details.",
-        images: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80",
-        category: "artist",
-        "whatsapp link": "https://wa.me/1234567890?text=I'm interested in Hand-Embroidered Skirt"
-      },
-      {
-        name: "Vintage Leather Bag",
-        price: 2299,
-        description: "Genuine leather bag with vintage charm and ample space.",
-        images: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80",
-        category: "secondhand",
-        "whatsapp link": "https://wa.me/1234567890?text=I'm interested in Vintage Leather Bag"
-      },
-      {
-        name: "Traditional Shawl",
-        price: 1799,
-        description: "Warm and stylish traditional shawl with authentic patterns.",
-        images: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=705&q=80",
-        category: "artist",
-        "whatsapp link": "https://wa.me/1234567890?text=I'm interested in Traditional Shawl"
-      }
-    ];
+    fetch(sheetAPI)
+      .then(res => res.json())
+      .then(data => {
+        products = data;
 
-    // Initialize the page
-    $(document).ready(function() {
-      // Try to fetch data from API, fall back to sample data if needed
-      fetch(sheetAPI)
-        .then(res => res.json())
-        .then(data => {
-          products = data;
-          renderProducts('featured'); // default tab
-        })
-        .catch(error => {
-          console.error('Error fetching data from API, using sample data:', error);
-          products = sampleProducts;
-          renderProducts('featured'); // default tab
+        // Load featured products (top 4)
+        const featured = products.filter(p => p.category && p.category.toLowerCase() === 'featured').slice(0,4);
+        const fList = document.getElementById('featured-products');
+        featured.forEach(p => {
+          const div = document.createElement('div');
+          div.className = 'col-md-3 product-item';
+          div.innerHTML = `
+            <img src="${p.images}" alt="${p.name}" class="img-fluid mb-2">
+            <h5>${p.name}</h5>
+            <p>₹${p.price}</p>
+            <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success btn-sm">Buy</a>
+          `;
+          fList.appendChild(div);
         });
-      
-      // Initialize banner slider
+
+        // Load Artist of the Month
+        const artist = products.find(p => p.category && p.category.toLowerCase() === 'artist');
+        if(artist){
+          const artistDiv = document.getElementById('artist-month');
+          const div = document.createElement('div');
+          div.className = 'col-md-3 artist-item';
+          div.innerHTML = `
+            <img src="${artist.images}" alt="${artist.name}">
+            <h5>${artist.name}</h5>
+            <p>${artist.description}</p>
+            <a href="products.html#artist" class="btn btn-info btn-sm">View Products</a>
+          `;
+          artistDiv.appendChild(div);
+        }
+      });
+
+    // Initialize slider
+    $(document).ready(function () {
       $('.owl-banner').owlCarousel({
         items: 1,
         loop: true,
         autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: true,
-        dots: true,
-        nav: true,
-        animateOut: 'fadeOut',
-        navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>']
-      });
-      
-      // Tab click event
-      $('.tab-button').click(function() {
-        $('.tab-button').removeClass('active');
-        $(this).addClass('active');
-        renderProducts($(this).data('tab'));
+        autoplayTimeout: 4000,
+        dots: true
       });
     });
-
-    // Render products based on selected tab
-    function renderProducts(tab) {
-      const $productList = $('#product-list');
-      $productList.empty();
-      
-      let filtered = products.filter(p => {
-        if (!p.category) return tab === 'all';
-        if (tab === 'all') return true;
-        return p.category.toLowerCase() === tab;
-      });
-
-      if (filtered.length === 0) filtered = products;
-
-      filtered.forEach(p => {
-        const productCard = `
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="product-item">
-              <img src="${p.images}" alt="${p.name}" class="img-fluid">
-              <div class="down-content">
-                <h4>${p.name}</h4>
-                <h6>₹${p.price}</h6>
-                <p>${p.description}</p>
-                <a href="${p['whatsapp link']}" target="_blank" class="btn btn-whatsapp">
-                  <i class="fab fa-whatsapp"></i> Buy on WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-        
-        $productList.append(productCard);
-      });
-    }
   </script>
 </body>
 </html>
