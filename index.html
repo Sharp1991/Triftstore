@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Thrift Sixteen - A thrift company from Meghalaya, Northeast India.">
   <meta name="author" content="Thrift Sixteen">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+    rel="stylesheet">
   <title>Thrift Sixteen</title>
 
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -16,15 +16,20 @@
   <link rel="stylesheet" href="assets/css/owl.css">
 
   <style>
-    /* Sticky header */
+    /* Fixed header */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 999;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
       background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
+    body {
+      padding-top: 90px;
+    }
+
+    /* Tabs */
     .tab-button {
       cursor: pointer;
       margin-right: 10px;
@@ -32,7 +37,6 @@
       background: #f4f4f4;
       border-radius: 6px;
       display: inline-block;
-      font-weight: 600;
     }
 
     .tab-button.active {
@@ -40,35 +44,34 @@
       color: #fff;
     }
 
-    .product-item {
-      padding: 15px;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      margin: 5px;
-      background: #fff;
-      text-align: center;
-    }
-
-    .artist-card {
-      padding: 15px;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      background: #fff;
-      text-align: center;
-      margin: 5px;
-    }
-
-    .artist-card img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+    /* Sliders */
+    .category-slider .item img {
+      width: 100%;
+      border-radius: 8px;
+      height: 300px;
       object-fit: cover;
-      margin-bottom: 10px;
     }
 
-    .section-heading p {
-      color: #555;
-      font-size: 14px;
+    .category-section {
+      margin-top: 50px;
+    }
+
+    .category-section h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .view-more {
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .view-more a {
+      text-decoration: none;
+      color: #ff6600;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -79,7 +82,9 @@
   <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
+        <a class="navbar-brand" href="index.html">
+          <h2>Thrift <em>Sixteen</em></h2>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -99,20 +104,20 @@
     <div class="owl-banner owl-carousel">
       <div class="banner-item-01">
         <div class="text-content">
-          <h4>Best Offer</h4>
-          <h2>New Arrivals On Sale ✨</h2>
+          <h4>✨ Best Offer</h4>
+          <h2>New Arrivals On Sale</h2>
         </div>
       </div>
       <div class="banner-item-02">
         <div class="text-content">
-          <h4>Flash Deals</h4>
-          <h2>Grab Your Best Products ⚡</h2>
+          <h4>⚡ Flash Deals</h4>
+          <h2>Grab Your Best Products</h2>
         </div>
       </div>
       <div class="banner-item-03">
         <div class="text-content">
-          <h4>Last Minute</h4>
-          <h2>Don’t Miss Out 🕒</h2>
+          <h4>⏰ Last Minute</h4>
+          <h2>Don’t Miss Out</h2>
         </div>
       </div>
     </div>
@@ -120,54 +125,39 @@
 
   <!-- Product Tabs -->
   <div class="container mt-5">
-
-    <!-- Tabs -->
-    <div class="d-flex justify-content-start mb-4">
-      <div class="tab-button active" data-tab="featured">⭐ Featured</div>
-      <div class="tab-button" data-tab="secondhand">🔄 Second Hand</div>
+    <div class="d-flex mb-4 justify-content-center flex-wrap">
+      <div class="tab-button active" data-tab="featured">🌟 Featured Products</div>
+      <div class="tab-button" data-tab="secondhand">♻️ Second Hand</div>
       <div class="tab-button" data-tab="brandnew">🆕 Brand New</div>
+      <div class="tab-button" data-tab="artist">🎨 Artist of the Month</div>
+      <div class="tab-button" data-tab="all">📦 All Products</div>
     </div>
-
-    <!-- Featured Products Slider -->
-    <div class="tab-slider" id="featured-tab">
-      <div class="section-heading">
-        <h2>⭐ Featured Products</h2>
-        <p>Our best picks for you this month!</p>
-        <a href="products.html?tab=featured">View All Featured Products <i class="fa fa-angle-right"></i></a>
-      </div>
-      <div class="owl-carousel" id="featured-carousel"></div>
-    </div>
-
-    <!-- Second Hand Products Slider -->
-    <div class="tab-slider mt-5" id="secondhand-tab" style="display:none;">
-      <div class="section-heading">
-        <h2>🔄 Second Hand</h2>
-        <p>Affordable pre-loved items, carefully curated!</p>
-        <a href="products.html?tab=secondhand">View All Second Hand Products <i class="fa fa-angle-right"></i></a>
-      </div>
-      <div class="owl-carousel" id="secondhand-carousel"></div>
-    </div>
-
-    <!-- Brand New Products Slider -->
-    <div class="tab-slider mt-5" id="brandnew-tab" style="display:none;">
-      <div class="section-heading">
-        <h2>🆕 Brand New</h2>
-        <p>Fresh arrivals, just for you!</p>
-        <a href="products.html?tab=brandnew">View All Brand New Products <i class="fa fa-angle-right"></i></a>
-      </div>
-      <div class="owl-carousel" id="brandnew-carousel"></div>
-    </div>
-
   </div>
 
-  <!-- Artist of the Month -->
-  <div class="container mt-5">
-    <div class="section-heading">
-      <h2>🎨 Artist of the Month</h2>
-      <p>Discover our featured creator and their exclusive products!</p>
-      <a href="products.html?tab=artist">View All Artist Products <i class="fa fa-angle-right"></i></a>
-    </div>
-    <div class="owl-carousel" id="artist-carousel"></div>
+  <!-- Sliders for each tab -->
+  <div class="container category-section" id="featured-section">
+    <h3>🌟 Featured Products - Our Best Picks</h3>
+    <div class="owl-carousel category-slider" id="featured-slider"></div>
+    <div class="view-more"><a href="products.html?tab=featured">View More &raquo;</a></div>
+  </div>
+
+  <div class="container category-section" id="secondhand-section">
+    <h3>♻️ Second Hand - Gently Pre-Loved</h3>
+    <div class="owl-carousel category-slider" id="secondhand-slider"></div>
+    <div class="view-more"><a href="products.html?tab=secondhand">View More &raquo;</a></div>
+  </div>
+
+  <div class="container category-section" id="brandnew-section">
+    <h3>🆕 Brand New - Fresh Arrivals</h3>
+    <div class="owl-carousel category-slider" id="brandnew-slider"></div>
+    <div class="view-more"><a href="products.html?tab=brandnew">View More &raquo;</a></div>
+  </div>
+
+  <div class="container category-section" id="artist-section">
+    <h3>🎨 Artist of the Month</h3>
+    <div class="row" id="artist-info" style="margin-bottom:20px"></div>
+    <div class="owl-carousel category-slider" id="artist-slider"></div>
+    <div class="view-more"><a href="products.html?tab=artist">View More &raquo;</a></div>
   </div>
 
   <!-- Footer -->
@@ -182,6 +172,7 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/owl.js"></script>
@@ -194,76 +185,60 @@
       .then(res => res.json())
       .then(data => {
         products = data;
-        renderCarousel('featured');
-        renderCarousel('secondhand');
-        renderCarousel('brandnew');
-        renderArtistCarousel();
+        renderSliders();
       });
 
-    function renderCarousel(tab) {
-      const carouselId = tab + '-carousel';
-      const filtered = products.filter(p => (p.category && p.category.toLowerCase() === tab)).slice(0, 6);
-      const carousel = document.getElementById(carouselId);
-      carousel.innerHTML = '';
-      filtered.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'product-item';
-        div.innerHTML = `
-          <img src="${p.images}" alt="${p.name}" class="img-fluid mb-2">
-          <h5>${p.name}</h5>
-          <h6>₹${p.price}</h6>
-          <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success btn-sm mt-1">Buy</a>
+    function renderSliders() {
+      // Featured
+      initSlider('#featured-slider', products.filter(p => p.category === 'featured').slice(0, 4));
+      // Second Hand
+      initSlider('#secondhand-slider', products.filter(p => p.category === 'secondhand').slice(0, 4));
+      // Brand New
+      initSlider('#brandnew-slider', products.filter(p => p.category === 'brandnew').slice(0, 4));
+      // Artist of the Month
+      const artist = products.filter(p => p.category === 'artist').slice(0, 1)[0];
+      if (artist) {
+        const artistInfo = document.getElementById('artist-info');
+        artistInfo.innerHTML = `
+          <div class="col-md-3">
+            <img src="${artist.images}" alt="${artist.name}" class="img-fluid rounded mb-2">
+          </div>
+          <div class="col-md-9">
+            <h4>${artist.name}</h4>
+            <p>${artist.description}</p>
+          </div>
         `;
-        carousel.appendChild(div);
+        initSlider('#artist-slider', products.filter(p => p.category === 'artist').slice(0, 4));
+      }
+    }
+
+    function initSlider(selector, items) {
+      const container = $(selector);
+      container.html('');
+      items.forEach(p => {
+        container.append(`<div class="item"><a href="${p['whatsapp link']}" target="_blank"><img src="${p.images}" alt="${p.name}"></a></div>`);
       });
-      $(carousel).owlCarousel({
-        items: 4,
-        loop: false,
+      container.owlCarousel({
+        items: 1,
+        loop: true,
         margin: 10,
-        nav: true,
-        dots: false,
-        responsive: {0:{items:1},600:{items:2},1000:{items:4}}
+        autoplay: true,
+        autoplayTimeout: 4000,
+        dots: true,
+        nav: true
       });
     }
 
-    function renderArtistCarousel() {
-      const artistProducts = products.filter(p => p.category && p.category.toLowerCase() === 'artist').slice(0, 6);
-      const carousel = document.getElementById('artist-carousel');
-      carousel.innerHTML = '';
-      artistProducts.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'artist-card';
-        div.innerHTML = `
-          <img src="${p.images}" alt="${p.name}">
-          <h5>${p.name}</h5>
-          <p>${p.description}</p>
-          <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success btn-sm mt-1">View Products</a>
-        `;
-        carousel.appendChild(div);
-      });
-      $(carousel).owlCarousel({
-        items: 3,
-        loop: false,
-        margin: 10,
-        nav: true,
-        dots: false,
-        responsive: {0:{items:1},600:{items:2},1000:{items:3}}
-      });
-    }
-
-    // Tab click functionality
+    // Tabs scroll to section
     document.querySelectorAll('.tab-button').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-        const tabs = ['featured', 'secondhand', 'brandnew'];
-        tabs.forEach(t => {
-          document.getElementById(t + '-tab').style.display = (t === tab.dataset.tab) ? 'block' : 'none';
-        });
+        const sectionId = tab.dataset.tab + '-section';
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
       });
     });
 
-    // Banner slider
     $(document).ready(function () {
       $('.owl-banner').owlCarousel({
         items: 1,
@@ -274,6 +249,5 @@
       });
     });
   </script>
-
 </body>
 </html>
