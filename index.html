@@ -1,208 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Thrift Sixteen - A thrift company from Meghalaya, Northeast India.">
   <meta name="author" content="Thrift Sixteen">
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
   <title>Thrift Sixteen</title>
 
-  <!-- Bootstrap CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
 
   <style>
-    .product-item { padding: 15px; border: 1px solid #eee; border-radius: 10px; background: #fff; margin:5px; text-align:center; }
-    .tab-slider .section-heading { display:flex; justify-content: space-between; align-items:center; margin-bottom:15px; }
-    .artist-of-month img { max-width:100%; border-radius:8px; }
-    .btn-sm { padding:4px 8px; font-size:0.8rem; }
+    /* Sticky header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .tab-button {
+      cursor: pointer;
+      margin-right: 10px;
+      padding: 8px 16px;
+      background: #f4f4f4;
+      border-radius: 6px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .tab-button.active {
+      background: #ff6600;
+      color: #fff;
+    }
+
+    .product-item {
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      margin: 5px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .artist-card {
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      background: #fff;
+      text-align: center;
+      margin: 5px;
+    }
+
+    .artist-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: #555;
+      font-size: 14px;
+    }
   </style>
 </head>
+
 <body>
 
-<!-- Header -->
-<header>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-        </ul>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-<!-- Banner / Slides -->
-<div class="banner header-text">
-  <div class="owl-banner owl-carousel">
-    <div class="banner-item-01">
-      <div class="text-content">
-        <h4>Best Offer</h4>
-        <h2>New Arrivals On Sale</h2>
+  <!-- Banner / Slides -->
+  <div class="banner header-text">
+    <div class="owl-banner owl-carousel">
+      <div class="banner-item-01">
+        <div class="text-content">
+          <h4>Best Offer</h4>
+          <h2>New Arrivals On Sale ✨</h2>
+        </div>
       </div>
-    </div>
-    <div class="banner-item-02">
-      <div class="text-content">
-        <h4>Flash Deals</h4>
-        <h2>Grab Your Best Products</h2>
+      <div class="banner-item-02">
+        <div class="text-content">
+          <h4>Flash Deals</h4>
+          <h2>Grab Your Best Products ⚡</h2>
+        </div>
       </div>
-    </div>
-    <div class="banner-item-03">
-      <div class="text-content">
-        <h4>Last Minute</h4>
-        <h2>Don’t Miss Out</h2>
+      <div class="banner-item-03">
+        <div class="text-content">
+          <h4>Last Minute</h4>
+          <h2>Don’t Miss Out 🕒</h2>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Product Sliders -->
-<div class="container mt-5">
+  <!-- Product Tabs -->
+  <div class="container mt-5">
 
-  <!-- Featured Products -->
-  <div class="tab-slider">
-    <div class="section-heading">
-      <h2>Featured Products</h2>
-      <a href="products.html?tab=featured">View All Featured Products <i class="fa fa-angle-right"></i></a>
+    <!-- Tabs -->
+    <div class="d-flex justify-content-start mb-4">
+      <div class="tab-button active" data-tab="featured">⭐ Featured</div>
+      <div class="tab-button" data-tab="secondhand">🔄 Second Hand</div>
+      <div class="tab-button" data-tab="brandnew">🆕 Brand New</div>
     </div>
-    <div class="owl-carousel" id="featured-carousel"></div>
-  </div>
 
-  <!-- Second Hand -->
-  <div class="tab-slider mt-5">
-    <div class="section-heading">
-      <h2>Second Hand</h2>
-      <a href="products.html?tab=secondhand">View All Second Hand Products <i class="fa fa-angle-right"></i></a>
+    <!-- Featured Products Slider -->
+    <div class="tab-slider" id="featured-tab">
+      <div class="section-heading">
+        <h2>⭐ Featured Products</h2>
+        <p>Our best picks for you this month!</p>
+        <a href="products.html?tab=featured">View All Featured Products <i class="fa fa-angle-right"></i></a>
+      </div>
+      <div class="owl-carousel" id="featured-carousel"></div>
     </div>
-    <div class="owl-carousel" id="secondhand-carousel"></div>
-  </div>
 
-  <!-- Brand New -->
-  <div class="tab-slider mt-5">
-    <div class="section-heading">
-      <h2>Brand New</h2>
-      <a href="products.html?tab=brandnew">View All Brand New Products <i class="fa fa-angle-right"></i></a>
+    <!-- Second Hand Products Slider -->
+    <div class="tab-slider mt-5" id="secondhand-tab" style="display:none;">
+      <div class="section-heading">
+        <h2>🔄 Second Hand</h2>
+        <p>Affordable pre-loved items, carefully curated!</p>
+        <a href="products.html?tab=secondhand">View All Second Hand Products <i class="fa fa-angle-right"></i></a>
+      </div>
+      <div class="owl-carousel" id="secondhand-carousel"></div>
     </div>
-    <div class="owl-carousel" id="brandnew-carousel"></div>
+
+    <!-- Brand New Products Slider -->
+    <div class="tab-slider mt-5" id="brandnew-tab" style="display:none;">
+      <div class="section-heading">
+        <h2>🆕 Brand New</h2>
+        <p>Fresh arrivals, just for you!</p>
+        <a href="products.html?tab=brandnew">View All Brand New Products <i class="fa fa-angle-right"></i></a>
+      </div>
+      <div class="owl-carousel" id="brandnew-carousel"></div>
+    </div>
+
   </div>
 
   <!-- Artist of the Month -->
-  <div class="artist-of-month mt-5">
+  <div class="container mt-5">
     <div class="section-heading">
-      <h2>Artist of the Month</h2>
+      <h2>🎨 Artist of the Month</h2>
+      <p>Discover our featured creator and their exclusive products!</p>
       <a href="products.html?tab=artist">View All Artist Products <i class="fa fa-angle-right"></i></a>
     </div>
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <img src="assets/images/artist_photo.jpg" alt="Artist Name">
-      </div>
-      <div class="col-md-8">
-        <h4>Artist Name</h4>
-        <p>Short bio about the artist, style, and uniqueness.</p>
+    <div class="owl-carousel" id="artist-carousel"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
+            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </div>
       </div>
     </div>
-    <div class="owl-carousel" id="artist-products-carousel"></div>
-  </div>
+  </footer>
 
-</div>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl.js"></script>
 
-<!-- Footer -->
-<footer class="mt-5">
-  <div class="container text-center">
-    <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
-      - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-  </div>
-</footer>
+  <script>
+    const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
+    let products = [];
 
-<!-- Scripts -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/owl.js"></script>
+    fetch(sheetAPI)
+      .then(res => res.json())
+      .then(data => {
+        products = data;
+        renderCarousel('featured');
+        renderCarousel('secondhand');
+        renderCarousel('brandnew');
+        renderArtistCarousel();
+      });
 
-<script>
-const sheetAPI = "https://api.sheetbest.com/sheets/463f1150-f334-4c7b-ab9c-6b71829d01f9";
-let products = [];
+    function renderCarousel(tab) {
+      const carouselId = tab + '-carousel';
+      const filtered = products.filter(p => (p.category && p.category.toLowerCase() === tab)).slice(0, 6);
+      const carousel = document.getElementById(carouselId);
+      carousel.innerHTML = '';
+      filtered.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'product-item';
+        div.innerHTML = `
+          <img src="${p.images}" alt="${p.name}" class="img-fluid mb-2">
+          <h5>${p.name}</h5>
+          <h6>₹${p.price}</h6>
+          <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success btn-sm mt-1">Buy</a>
+        `;
+        carousel.appendChild(div);
+      });
+      $(carousel).owlCarousel({
+        items: 4,
+        loop: false,
+        margin: 10,
+        nav: true,
+        dots: false,
+        responsive: {0:{items:1},600:{items:2},1000:{items:4}}
+      });
+    }
 
-fetch(sheetAPI)
-  .then(res => res.json())
-  .then(data => {
-    products = data;
-    renderSlider('featured', 'featured-carousel', 4);
-    renderSlider('secondhand', 'secondhand-carousel', 4);
-    renderSlider('brandnew', 'brandnew-carousel', 4);
-    renderArtistSection('artist', 'artist-products-carousel', 4);
-  });
+    function renderArtistCarousel() {
+      const artistProducts = products.filter(p => p.category && p.category.toLowerCase() === 'artist').slice(0, 6);
+      const carousel = document.getElementById('artist-carousel');
+      carousel.innerHTML = '';
+      artistProducts.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'artist-card';
+        div.innerHTML = `
+          <img src="${p.images}" alt="${p.name}">
+          <h5>${p.name}</h5>
+          <p>${p.description}</p>
+          <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success btn-sm mt-1">View Products</a>
+        `;
+        carousel.appendChild(div);
+      });
+      $(carousel).owlCarousel({
+        items: 3,
+        loop: false,
+        margin: 10,
+        nav: true,
+        dots: false,
+        responsive: {0:{items:1},600:{items:2},1000:{items:3}}
+      });
+    }
 
-function renderSlider(category, carouselId, limit=4){
-  const carousel = document.getElementById(carouselId);
-  carousel.innerHTML = '';
-  const filtered = products.filter(p => p.category && p.category.toLowerCase() === category).slice(0, limit);
-  filtered.forEach(p=>{
-    const div = document.createElement('div');
-    div.className = 'product-item';
-    div.innerHTML = `
-      <img src="${p.images}" alt="${p.name}" class="img-fluid mb-2">
-      <h4>${p.name}</h4>
-      <h6>₹${p.price}</h6>
-      <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success btn-sm">Buy on WhatsApp</a>
-    `;
-    carousel.appendChild(div);
-  });
-  $(`#${carouselId}`).owlCarousel({
-    items: 3,
-    margin: 10,
-    loop: true,
-    nav: true,
-    dots: true,
-    responsive:{0:{items:1},600:{items:2},1000:{items:4}}
-  });
-}
+    // Tab click functionality
+    document.querySelectorAll('.tab-button').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const tabs = ['featured', 'secondhand', 'brandnew'];
+        tabs.forEach(t => {
+          document.getElementById(t + '-tab').style.display = (t === tab.dataset.tab) ? 'block' : 'none';
+        });
+      });
+    });
 
-function renderArtistSection(category, carouselId, limit=4){
-  const carousel = document.getElementById(carouselId);
-  carousel.innerHTML = '';
-  const filtered = products.filter(p => p.category && p.category.toLowerCase() === category).slice(0, limit);
-  filtered.forEach(p=>{
-    const div = document.createElement('div');
-    div.className = 'product-item';
-    div.innerHTML = `
-      <img src="${p.images}" alt="${p.name}" class="img-fluid mb-2">
-      <h4>${p.name}</h4>
-      <h6>₹${p.price}</h6>
-      <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success btn-sm">Buy on WhatsApp</a>
-    `;
-    carousel.appendChild(div);
-  });
-  $(`#${carouselId}`).owlCarousel({
-    items: 3,
-    margin: 10,
-    loop: true,
-    nav: true,
-    dots: true,
-    responsive:{0:{items:1},600:{items:2},1000:{items:4}}
-  });
-}
+    // Banner slider
+    $(document).ready(function () {
+      $('.owl-banner').owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        dots: true
+      });
+    });
+  </script>
 
-// Initialize banner slider
-$(document).ready(function(){
-  $('.owl-banner').owlCarousel({
-    items:1,
-    loop:true,
-    autoplay:true,
-    autoplayTimeout:4000,
-    dots:true
-  });
-});
-</script>
 </body>
 </html>
