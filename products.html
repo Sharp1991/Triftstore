@@ -20,20 +20,59 @@
 
   <style>
     body {
-      padding-top: 90px;
       background-color: #000;
+      color: #fff;
+      padding-top: 80px; /* offset for fixed header */
+    }
+
+    /* Header */
+    .navbar {
+      background-color: #000 !important;
+      padding: 10px 0;
+    }
+
+    .navbar-brand h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      margin-left: 10px;
+    }
+
+    .navbar-nav .nav-link.active {
+      color: #ff6600 !important;
+    }
+
+    /* Product heading image */
+    .page-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-heading h2,
+    .page-heading h4 {
       color: #fff;
     }
 
+    .page-heading img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 15px;
+      border-radius: 8px;
+    }
+
+    /* Tabs */
     .tab-button {
       cursor: pointer;
-      margin-right: 10px;
+      margin: 5px;
       padding: 8px 16px;
       background: #222;
       border-radius: 6px;
       display: inline-block;
       color: #fff;
-      text-decoration: none;
     }
 
     .tab-button.active {
@@ -41,13 +80,12 @@
       color: #fff;
     }
 
+    /* Product cards */
     .product-item {
-      padding: 15px;
-      border: 1px solid #333;
-      border-radius: 10px;
+      padding: 10px;
       margin-bottom: 20px;
       background: #111;
-      color: #fff;
+      border-radius: 10px;
     }
 
     .product-item h5,
@@ -55,24 +93,29 @@
       color: #fff;
     }
 
-    .product-item img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 10px;
+    .product-item a.btn {
+      background-color: #ff6600;
+      border: none;
+      color: #fff;
     }
 
-    .pagination {
-      justify-content: center;
-      margin-top: 20px;
+    .product-item a.btn:hover {
+      background-color: #e65c00;
+    }
+
+    /* Slider inside product */
+    .product-slider .item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     .product-slider .owl-nav button {
       background: #ff6600;
       border: none;
-      padding: 5px 10px;
       color: #fff;
+      padding: 5px 10px;
       border-radius: 4px;
     }
 
@@ -80,26 +123,16 @@
       background: #e65c00;
     }
 
-    .page-heading {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .page-heading img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-top: 15px;
-    }
-
-    footer {
-      background: #111;
+    /* Pagination */
+    .pagination .page-link {
+      background: #222;
       color: #fff;
-      padding: 20px 0;
+      border: none;
     }
 
-    footer a {
-      color: #ff6600;
+    .pagination .page-item.active .page-link {
+      background: #ff6600;
+      color: #fff;
     }
   </style>
 </head>
@@ -108,9 +141,11 @@
 
   <!-- Header -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
+        <a class="navbar-brand" href="index.html">
+          <h2>Thrift <em>Sixteen</em></h2>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -130,19 +165,22 @@
   <div class="page-heading">
     <h4>Our Collection</h4>
     <h2>Thrift Sixteen Products</h2>
-    <img src="https://raw.githubusercontent.com/Sharp1991/Triftstore/main/assets/images/products-heading.jpg" alt="Products Heading">
+    <img src="assets/images/products-heading.jpg" alt="Products Heading">
   </div>
 
-  <!-- Product Tabs -->
-  <div class="container mt-5">
-    <div class="d-flex mb-4 justify-content-center flex-wrap">
+  <!-- Tabs -->
+  <div class="container text-center mb-4">
+    <div class="d-flex justify-content-center flex-wrap">
       <div class="tab-button active" data-tab="featured">🌟 Featured Products</div>
       <div class="tab-button" data-tab="brandnew">🆕 Brand New</div>
       <div class="tab-button" data-tab="secondhand">♻️ Second Hand</div>
       <div class="tab-button" data-tab="artist">🎨 Artist of the Month</div>
       <div class="tab-button" data-tab="all">📦 All Products</div>
     </div>
+  </div>
 
+  <!-- Products List -->
+  <div class="container">
     <div class="row" id="product-list"></div>
 
     <!-- Pagination -->
@@ -152,9 +190,14 @@
   </div>
 
   <!-- Footer -->
-  <footer>
-    <div class="container text-center">
-      <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd. - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+  <footer class="mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
+            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -196,15 +239,11 @@
         const div = document.createElement('div');
         div.className = 'col-md-3 product-item';
 
+        // Multiple images slider
         const images = p.images.split(',');
-        let sliderHTML = '';
-        if (images.length > 1) {
-          sliderHTML = `<div class="owl-carousel product-slider">`;
-          images.forEach(img => { sliderHTML += `<div class="item"><img src="${img.trim()}" alt="${p.name}"></div>` });
-          sliderHTML += `</div>`;
-        } else {
-          sliderHTML = `<img src="${images[0].trim()}" alt="${p.name}" class="img-fluid">`;
-        }
+        let sliderHTML = `<div class="owl-carousel product-slider">`;
+        images.forEach(img => sliderHTML += `<div class="item"><img src="${img.trim()}" alt="${p.name}"></div>`);
+        sliderHTML += `</div>`;
 
         div.innerHTML = `
           ${sliderHTML}
@@ -213,18 +252,16 @@
           ${p.description ? `<p>${p.description}</p>` : ''}
           <a href="${p['whatsapp link']}" target="_blank" class="btn btn-success">Buy on WhatsApp</a>
         `;
-
         list.appendChild(div);
 
-        if (images.length > 1) {
-          $(div).find('.product-slider').owlCarousel({
-            items: 1,
-            loop: true,
-            nav: true,
-            dots: true,
-            margin: 5
-          });
-        }
+        // Initialize slider
+        $(div).find('.product-slider').owlCarousel({
+          items: 1,
+          loop: images.length > 1,
+          nav: true,
+          dots: true,
+          margin: 5
+        });
       });
 
       renderPagination(totalPages, page);
@@ -247,6 +284,7 @@
       }
     }
 
+    // Tab click
     document.querySelectorAll('.tab-button').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
