@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="assets/css/owl.css">
 
   <style>
-    /* Tabs */
     .tab-button {
       cursor: pointer;
       margin-right: 10px;
@@ -28,40 +27,36 @@
       border-radius: 6px;
       display: inline-block;
     }
-
     .tab-button.active {
       background: #ff6600;
       color: #fff;
     }
-
-    /* Sliders */
     .category-slider .item img {
       width: 100%;
       border-radius: 8px;
-      height: 300px;
+      height: 280px;
       object-fit: cover;
     }
-
+    .category-slider .view-all {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ff6600;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 8px;
+      height: 280px;
+      text-decoration: none;
+    }
     .category-section {
       margin-top: 50px;
     }
-
     .category-section h3 {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 20px;
-    }
-
-    .view-more {
-      text-align: right;
-      margin-top: 10px;
-    }
-
-    .view-more a {
-      text-decoration: none;
-      color: #ff6600;
-      font-weight: bold;
     }
   </style>
 </head>
@@ -94,22 +89,13 @@
   <div class="banner header-text">
     <div class="owl-banner owl-carousel">
       <div class="banner-item-01">
-        <div class="text-content">
-          <h4>✨ Best Offer</h4>
-          <h2>New Arrivals On Sale</h2>
-        </div>
+        <div class="text-content"><h4>✨ Best Offer</h4><h2>New Arrivals On Sale</h2></div>
       </div>
       <div class="banner-item-02">
-        <div class="text-content">
-          <h4>⚡ Flash Deals</h4>
-          <h2>Grab Your Best Products</h2>
-        </div>
+        <div class="text-content"><h4>⚡ Flash Deals</h4><h2>Grab Your Best Products</h2></div>
       </div>
       <div class="banner-item-03">
-        <div class="text-content">
-          <h4>⏰ Last Minute</h4>
-          <h2>Don’t Miss Out</h2>
-        </div>
+        <div class="text-content"><h4>⏰ Last Minute</h4><h2>Don’t Miss Out</h2></div>
       </div>
     </div>
   </div>
@@ -117,7 +103,7 @@
   <!-- Product Tabs -->
   <div class="container mt-5">
     <div class="d-flex mb-4 justify-content-center flex-wrap">
-      <div class="tab-button active" data-tab="featured">🌟 Featured Products</div>
+      <div class="tab-button active" data-tab="featured">🌟 Featured</div>
       <div class="tab-button" data-tab="secondhand">♻️ Second Hand</div>
       <div class="tab-button" data-tab="brandnew">🆕 Brand New</div>
       <div class="tab-button" data-tab="artist">🎨 Artist of the Month</div>
@@ -125,42 +111,34 @@
     </div>
   </div>
 
-  <!-- Sliders for each tab -->
+  <!-- Sliders -->
   <div class="container category-section" id="featured-section">
     <h3>🌟 Featured Products - Our Best Picks</h3>
     <div class="owl-carousel category-slider" id="featured-slider"></div>
-    <div class="view-more"><a href="products.html?tab=featured">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="secondhand-section">
     <h3>♻️ Second Hand - Gently Pre-Loved</h3>
     <div class="owl-carousel category-slider" id="secondhand-slider"></div>
-    <div class="view-more"><a href="products.html?tab=secondhand">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="brandnew-section">
     <h3>🆕 Brand New - Fresh Arrivals</h3>
     <div class="owl-carousel category-slider" id="brandnew-slider"></div>
-    <div class="view-more"><a href="products.html?tab=brandnew">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="artist-section">
     <h3>🎨 Artist of the Month</h3>
-    <div class="row" id="artist-info" style="margin-bottom:20px"></div>
+    <div class="row mb-3" id="artist-info"></div>
     <div class="owl-carousel category-slider" id="artist-slider"></div>
-    <div class="view-more"><a href="products.html?tab=artist">View More &raquo;</a></div>
   </div>
 
   <!-- Footer -->
   <footer class="mt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
-            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-        </div>
-      </div>
-    </div>
+    <div class="container"><div class="row"><div class="col-md-12 text-center">
+      <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd. - Design:
+        <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+    </div></div></div>
   </footer>
 
   <!-- Scripts -->
@@ -180,35 +158,35 @@
       });
 
     function renderSliders() {
-      // Featured
-      initSlider('#featured-slider', products.filter(p => p.category === 'featured').slice(0, 6));
-      // Second Hand
-      initSlider('#secondhand-slider', products.filter(p => p.category === 'secondhand').slice(0, 6));
-      // Brand New
-      initSlider('#brandnew-slider', products.filter(p => p.category === 'brandnew').slice(0, 6));
-      // Artist of the Month
-      const artist = products.find(p => p.category === 'artist');
-      if (artist) {
-        const artistInfo = document.getElementById('artist-info');
-        artistInfo.innerHTML = `
-          <div class="col-md-3">
-            <img src="${artist.images}" alt="${artist.name}" class="img-fluid rounded mb-2">
-          </div>
-          <div class="col-md-9">
-            <h4>${artist.name}</h4>
-            <p>${artist.description}</p>
-          </div>
-        `;
-        initSlider('#artist-slider', products.filter(p => p.category === 'artist').slice(0, 6));
-      }
+      makeSlider('#featured-slider', 'featured');
+      makeSlider('#secondhand-slider', 'secondhand');
+      makeSlider('#brandnew-slider', 'brandnew');
+      makeSlider('#artist-slider', 'artist', true);
     }
 
-    function initSlider(selector, items) {
+    function makeSlider(selector, category, isArtist=false) {
       const container = $(selector);
       container.html('');
-      items.forEach(p => {
+      const filtered = products.filter(p => p.category === category).slice(0, 4);
+
+      // Show artist info once
+      if (isArtist) {
+        const artist = filtered[0];
+        if (artist) {
+          document.getElementById('artist-info').innerHTML = `
+            <div class="col-md-3"><img src="${artist.images}" class="img-fluid rounded"></div>
+            <div class="col-md-9"><h4>${artist.name}</h4><p>${artist.description || ''}</p></div>`;
+        }
+      }
+
+      // Add 4 product slides
+      filtered.forEach(p => {
         container.append(`<div class="item"><a href="${p['whatsapp link']}" target="_blank"><img src="${p.images}" alt="${p.name}"></a></div>`);
       });
+
+      // Add "View All" slide
+      container.append(`<div class="item"><a href="products.html?tab=${category}" class="view-all">View All →</a></div>`);
+
       container.owlCarousel({
         items: 1,
         loop: true,
@@ -220,7 +198,7 @@
       });
     }
 
-    // Tabs scroll to section
+    // Tabs
     document.querySelectorAll('.tab-button').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
