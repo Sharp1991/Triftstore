@@ -6,11 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Thrift Sixteen - A thrift company from Meghalaya, Northeast India.">
   <meta name="author" content="Thrift Sixteen">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
   <title>Thrift Sixteen</title>
 
+  <!-- Bootstrap -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
@@ -67,9 +70,10 @@
 
   <!-- Header -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="index.html"><h2>Thrift <em>Sixteen</em></h2></a>
+        <a class="navbar-brand" href="index.html">
+          <h2>Thrift <em>Sixteen</em></h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
@@ -78,6 +82,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
           </ul>
         </div>
@@ -124,22 +129,26 @@
   <div class="container category-section" id="featured-section">
     <h3>🌟 Featured Products - Our Best Picks</h3>
     <div class="owl-carousel category-slider" id="featured-slider"></div>
+    <div class="view-more"><a href="products.html?tab=featured">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="secondhand-section">
     <h3>♻️ Second Hand - Gently Pre-Loved</h3>
     <div class="owl-carousel category-slider" id="secondhand-slider"></div>
+    <div class="view-more"><a href="products.html?tab=secondhand">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="brandnew-section">
     <h3>🆕 Brand New - Fresh Arrivals</h3>
     <div class="owl-carousel category-slider" id="brandnew-slider"></div>
+    <div class="view-more"><a href="products.html?tab=brandnew">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="artist-section">
     <h3>🎨 Artist of the Month</h3>
     <div class="row" id="artist-info" style="margin-bottom:20px"></div>
     <div class="owl-carousel category-slider" id="artist-slider"></div>
+    <div class="view-more"><a href="products.html?tab=artist">View More &raquo;</a></div>
   </div>
 
   <!-- Footer -->
@@ -172,16 +181,13 @@
 
     function renderSliders() {
       // Featured
-      initSlider('#featured-slider', products.filter(p => p.category === 'featured').slice(0, 5), "products.html?tab=featured");
-
+      initSlider('#featured-slider', products.filter(p => p.category === 'featured').slice(0, 6));
       // Second Hand
-      initSlider('#secondhand-slider', products.filter(p => p.category === 'secondhand').slice(0, 5), "products.html?tab=secondhand");
-
+      initSlider('#secondhand-slider', products.filter(p => p.category === 'secondhand').slice(0, 6));
       // Brand New
-      initSlider('#brandnew-slider', products.filter(p => p.category === 'brandnew').slice(0, 5), "products.html?tab=brandnew");
-
+      initSlider('#brandnew-slider', products.filter(p => p.category === 'brandnew').slice(0, 6));
       // Artist of the Month
-      const artist = products.filter(p => p.category === 'artist').slice(0, 1)[0];
+      const artist = products.find(p => p.category === 'artist');
       if (artist) {
         const artistInfo = document.getElementById('artist-info');
         artistInfo.innerHTML = `
@@ -193,19 +199,16 @@
             <p>${artist.description}</p>
           </div>
         `;
-        initSlider('#artist-slider', products.filter(p => p.category === 'artist').slice(0, 5), "products.html?tab=artist");
+        initSlider('#artist-slider', products.filter(p => p.category === 'artist').slice(0, 6));
       }
     }
 
-    function initSlider(selector, items, linkPage) {
+    function initSlider(selector, items) {
       const container = $(selector);
       container.html('');
       items.forEach(p => {
         container.append(`<div class="item"><a href="${p['whatsapp link']}" target="_blank"><img src="${p.images}" alt="${p.name}"></a></div>`);
       });
-      // Add "View More" slide
-      container.append(`<div class="item"><a href="${linkPage}"><img src="assets/images/view-more.jpg" alt="View More"></a></div>`);
-
       container.owlCarousel({
         items: 1,
         loop: true,
@@ -239,4 +242,3 @@
   </script>
 </body>
 </html>
-
