@@ -16,19 +16,6 @@
   <link rel="stylesheet" href="assets/css/owl.css">
 
   <style>
-    /* Fixed header */
-    header {
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-      padding-top: 90px;
-    }
-
     /* Tabs */
     .tab-button {
       cursor: pointer;
@@ -80,10 +67,10 @@
 
   <!-- Header -->
   <header>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <h2>Thrift <em>Sixteen</em></h2>
+          <h2 style="color:#333">Thrift <em style="color:#ff6600">Sixteen</em></h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
@@ -138,26 +125,22 @@
   <div class="container category-section" id="featured-section">
     <h3>🌟 Featured Products - Our Best Picks</h3>
     <div class="owl-carousel category-slider" id="featured-slider"></div>
-    <div class="view-more"><a href="products.html?tab=featured">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="secondhand-section">
     <h3>♻️ Second Hand - Gently Pre-Loved</h3>
     <div class="owl-carousel category-slider" id="secondhand-slider"></div>
-    <div class="view-more"><a href="products.html?tab=secondhand">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="brandnew-section">
     <h3>🆕 Brand New - Fresh Arrivals</h3>
     <div class="owl-carousel category-slider" id="brandnew-slider"></div>
-    <div class="view-more"><a href="products.html?tab=brandnew">View More &raquo;</a></div>
   </div>
 
   <div class="container category-section" id="artist-section">
     <h3>🎨 Artist of the Month</h3>
     <div class="row" id="artist-info" style="margin-bottom:20px"></div>
     <div class="owl-carousel category-slider" id="artist-slider"></div>
-    <div class="view-more"><a href="products.html?tab=artist">View More &raquo;</a></div>
   </div>
 
   <!-- Footer -->
@@ -190,11 +173,14 @@
 
     function renderSliders() {
       // Featured
-      initSlider('#featured-slider', products.filter(p => p.category === 'featured').slice(0, 4));
+      initSlider('#featured-slider', products.filter(p => p.category === 'featured').slice(0, 5), "products.html?tab=featured");
+
       // Second Hand
-      initSlider('#secondhand-slider', products.filter(p => p.category === 'secondhand').slice(0, 4));
+      initSlider('#secondhand-slider', products.filter(p => p.category === 'secondhand').slice(0, 5), "products.html?tab=secondhand");
+
       // Brand New
-      initSlider('#brandnew-slider', products.filter(p => p.category === 'brandnew').slice(0, 4));
+      initSlider('#brandnew-slider', products.filter(p => p.category === 'brandnew').slice(0, 5), "products.html?tab=brandnew");
+
       // Artist of the Month
       const artist = products.filter(p => p.category === 'artist').slice(0, 1)[0];
       if (artist) {
@@ -208,16 +194,19 @@
             <p>${artist.description}</p>
           </div>
         `;
-        initSlider('#artist-slider', products.filter(p => p.category === 'artist').slice(0, 4));
+        initSlider('#artist-slider', products.filter(p => p.category === 'artist').slice(0, 5), "products.html?tab=artist");
       }
     }
 
-    function initSlider(selector, items) {
+    function initSlider(selector, items, linkPage) {
       const container = $(selector);
       container.html('');
       items.forEach(p => {
         container.append(`<div class="item"><a href="${p['whatsapp link']}" target="_blank"><img src="${p.images}" alt="${p.name}"></a></div>`);
       });
+      // Add "View More" slide
+      container.append(`<div class="item"><a href="${linkPage}"><img src="assets/images/view-more.jpg" alt="View More"></a></div>`);
+
       container.owlCarousel({
         items: 1,
         loop: true,
