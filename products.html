@@ -10,26 +10,107 @@
 
   <title>Thrift Sixteen Products</title>
 
-  <!-- Bootstrap core CSS -->
+  <!-- Bootstrap -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Additional CSS Files -->
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
   <link rel="stylesheet" href="assets/css/owl.css">
 
   <style>
-    body { padding-top: 90px; }
-    .tab-button { cursor: pointer; margin-right: 10px; padding: 8px 16px; background: #f4f4f4; border-radius: 6px; display: inline-block; }
-    .tab-button.active { background: #ff6600; color: #fff; }
-    .product-item { padding: 15px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 20px; background: #fff; }
-    .product-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
-    .pagination { justify-content: center; margin-top: 20px; }
+    body {
+      background: #000 !important;
+      color: #fff !important;
+      padding-top: 90px;
+    }
+
+    h2, h4, h5, p {
+      color: #fff !important;
+    }
+
+    .tab-button {
+      cursor: pointer;
+      margin: 5px;
+      padding: 8px 16px;
+      background: #222;
+      border-radius: 6px;
+      display: inline-block;
+      color: #fff;
+    }
+
+    .tab-button.active {
+      background: #ff6600;
+      color: #fff !important;
+    }
+
+    .product-item {
+      padding: 15px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background: #111;
+      color: #fff !important;
+    }
+
+    .product-item h5 {
+      color: #fff !important;
+    }
+
+    .product-item p {
+      color: #ddd !important;
+    }
+
+    .product-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .pagination {
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination .page-item .page-link {
+      background: #111;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    .pagination .page-item.active .page-link {
+      background: #ff6600;
+      border: none;
+    }
 
     /* Product slider inside each product */
-    .product-slider .item img { height: 250px; object-fit: cover; border-radius: 8px; }
-    .product-slider .owl-nav button { background: #ff6600; border: none; padding: 5px 10px; color: #fff; border-radius: 4px; }
-    .product-slider .owl-nav button:hover { background: #e65c00; }
+    .product-slider .item img {
+      height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .product-slider .owl-nav button {
+      background: #ff6600;
+      border: none;
+      padding: 5px 10px;
+      color: #fff;
+      border-radius: 4px;
+    }
+
+    .product-slider .owl-nav button:hover {
+      background: #e65c00;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 20px 0;
+    }
   </style>
 </head>
 
@@ -55,18 +136,12 @@
     </nav>
   </header>
 
-  <!-- Page Heading with image -->
+  <!-- Page Heading -->
   <div class="page-heading header-text">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-content">
-            <h4>Our Collection</h4>
-            <h2>Thrift Sixteen Products</h2>
-            <img src="assets/images/product-heading.jpg" alt="Products Heading" class="img-fluid mt-3">
-          </div>
-        </div>
-      </div>
+    <div class="container text-center">
+      <h4>Our Collection</h4>
+      <h2>Thrift Sixteen Products</h2>
+      <img src="assets/images/product-heading.jpg" alt="Products Heading" class="img-fluid mt-3 rounded">
     </div>
   </div>
 
@@ -90,13 +165,9 @@
 
   <!-- Footer -->
   <footer class="mt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
-            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-        </div>
-      </div>
+    <div class="container text-center">
+      <p>Copyright &copy; 2025 Thrift Sixteen Co., Ltd.
+        - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
     </div>
   </footer>
 
@@ -138,8 +209,8 @@
         const div = document.createElement('div');
         div.className = 'col-md-3 product-item';
 
-        // Multiple images slider inside each product
-        const images = p.images.split(','); // if multiple images separated by commas
+        // Multiple images slider
+        const images = p.images ? p.images.split(',') : [];
         let sliderHTML = `<div class="owl-carousel product-slider">`;
         images.forEach(img => { sliderHTML += `<div class="item"><img src="${img.trim()}" alt="${p.name}"></div>` });
         sliderHTML += `</div>`;
@@ -153,7 +224,7 @@
         `;
         list.appendChild(div);
 
-        // Initialize Owl Carousel for this product
+        // Initialize product slider
         $(div).find('.product-slider').owlCarousel({
           items: 1,
           loop: images.length > 1,
@@ -183,7 +254,7 @@
       }
     }
 
-    // Tabs click
+    // Tabs
     document.querySelectorAll('.tab-button').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
