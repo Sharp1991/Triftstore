@@ -20,45 +20,32 @@
 
   <style>
     body {
+      padding-top: 70px;
       background-color: #000;
       color: #fff;
-      padding-top: 90px;
     }
 
-    a {
-      color: #ff6600;
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      z-index: 9999;
+      padding: 0;
     }
 
-    a:hover {
-      color: #ffa366;
-      text-decoration: none;
-    }
-
-    .navbar {
-      background-color: #111;
-    }
-
-    .navbar .nav-link {
+    .navbar-brand h2 {
+      margin: 0;
+      line-height: 1;
       color: #fff;
-    }
-
-    .navbar .nav-item.active .nav-link {
-      color: #ff6600;
-    }
-
-    .banner-item-01, .banner-item-02, .banner-item-03 {
-      background-color: #111;
-    }
-
-    .banner .text-content h2, .banner .text-content h4 {
-      color: #ff6600;
     }
 
     .tab-button {
       cursor: pointer;
       margin-right: 10px;
       padding: 8px 16px;
-      background: #222;
+      background: #333;
       color: #fff;
       border-radius: 6px;
       display: inline-block;
@@ -76,7 +63,6 @@
       max-height: 350px;
       object-fit: contain;
       border-radius: 8px;
-      border: 2px solid #fff;
     }
 
     .category-slider .view-all {
@@ -101,13 +87,28 @@
       align-items: center;
       gap: 10px;
       margin-bottom: 20px;
-      color: #ff6600;
     }
 
-    footer {
-      background-color: #111;
+    #artist-info {
       color: #fff;
-      padding: 20px 0;
+    }
+
+    .banner .text-content h2,
+    .banner .text-content h4 {
+      color: #fff;
+    }
+
+    .footer {
+      background-color: #000;
+      color: #fff;
+    }
+
+    a.nav-link {
+      color: #fff !important;
+    }
+
+    a.nav-link:hover {
+      color: #ff6600 !important;
     }
   </style>
 </head>
@@ -185,7 +186,7 @@
   </div>
 
   <!-- Footer -->
-  <footer>
+  <footer class="mt-5 footer">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
