@@ -27,16 +27,20 @@
       border-radius: 6px;
       display: inline-block;
     }
+
     .tab-button.active {
       background: #ff6600;
       color: #fff;
     }
+
     .category-slider .item img {
       width: 100%;
+      height: auto;
+      max-height: 350px;
+      object-fit: contain;
       border-radius: 8px;
-      height: 280px;
-      object-fit: cover;
     }
+
     .category-slider .view-all {
       display: flex;
       justify-content: center;
@@ -46,12 +50,14 @@
       font-weight: bold;
       font-size: 18px;
       border-radius: 8px;
-      height: 280px;
+      height: 350px;
       text-decoration: none;
     }
+
     .category-section {
       margin-top: 50px;
     }
+
     .category-section h3 {
       display: flex;
       align-items: center;
@@ -103,11 +109,11 @@
   <!-- Product Tabs -->
   <div class="container mt-5">
     <div class="d-flex mb-4 justify-content-center flex-wrap">
-      <div class="tab-button active" data-tab="featured">🌟 Featured</div>
-      <div class="tab-button" data-tab="secondhand">♻️ Second Hand</div>
-      <div class="tab-button" data-tab="brandnew">🆕 Brand New</div>
-      <div class="tab-button" data-tab="artist">🎨 Artist of the Month</div>
-      <div class="tab-button" data-tab="all">📦 All Products</div>
+      <a class="tab-button active" href="products.html?tab=featured">🌟 Featured</a>
+      <a class="tab-button" href="products.html?tab=secondhand">♻️ Second Hand</a>
+      <a class="tab-button" href="products.html?tab=brandnew">🆕 Brand New</a>
+      <a class="tab-button" href="products.html?tab=artist">🎨 Artist of the Month</a>
+      <a class="tab-button" href="products.html?tab=all">📦 All Products</a>
     </div>
   </div>
 
@@ -169,22 +175,17 @@
       container.html('');
       const filtered = products.filter(p => p.category === category).slice(0, 4);
 
-      // Show artist info once
-      if (isArtist) {
+      if (isArtist && filtered.length > 0) {
         const artist = filtered[0];
-        if (artist) {
-          document.getElementById('artist-info').innerHTML = `
-            <div class="col-md-3"><img src="${artist.images}" class="img-fluid rounded"></div>
-            <div class="col-md-9"><h4>${artist.name}</h4><p>${artist.description || ''}</p></div>`;
-        }
+        document.getElementById('artist-info').innerHTML = `
+          <div class="col-md-3"><img src="${artist.images}" class="img-fluid rounded"></div>
+          <div class="col-md-9"><h4>${artist.name}</h4><p>${artist.description || ''}</p></div>`;
       }
 
-      // Add 4 product slides
       filtered.forEach(p => {
         container.append(`<div class="item"><a href="${p['whatsapp link']}" target="_blank"><img src="${p.images}" alt="${p.name}"></a></div>`);
       });
 
-      // Add "View All" slide
       container.append(`<div class="item"><a href="products.html?tab=${category}" class="view-all">View All →</a></div>`);
 
       container.owlCarousel({
@@ -197,16 +198,6 @@
         nav: true
       });
     }
-
-    // Tabs
-    document.querySelectorAll('.tab-button').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const sectionId = tab.dataset.tab + '-section';
-        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-      });
-    });
 
     $(document).ready(function () {
       $('.owl-banner').owlCarousel({
