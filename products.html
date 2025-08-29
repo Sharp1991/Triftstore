@@ -106,9 +106,11 @@
     /* Slider inside product */
     .product-slider .item img {
       width: 100%;
-      height: 250px;
-      object-fit: cover;
+      height: auto;          /* allow height to adjust */
+      max-height: 350px;     /* optional max height */
+      object-fit: contain;   /* contain entire image, no cropping */
       border-radius: 8px;
+      background-color: #111; /* optional for contrast */
     }
 
     .product-slider .owl-nav button {
@@ -297,4 +299,3 @@
   </script>
 </body>
 </html>
-
